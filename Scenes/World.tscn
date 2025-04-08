@@ -369,17 +369,6 @@ target_position = Vector3(0, 1, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.296, 1.4, 0)
 target_position = Vector3(0, 1, 0)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.401484, -0.915866, 0, 0.915866, 0.401484, -12.2942, 2.72668, -6.02395)
-light_energy = 4.95
-
-[node name="SpotLight3D2" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.0474901, 0.998872, 0, -0.998872, -0.0474901, -12.2942, 2.72668, -6.02395)
-light_energy = 4.95
-
-[node name="SpotLight3D3" type="SpotLight3D" parent="."]
-transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, 24, 2, 0)
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_l208q")
 
