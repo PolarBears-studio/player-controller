@@ -1,0 +1,247 @@
+[gd_scene load_steps=25 format=3 uid="uid://bmf2100e301ma"]
+
+[ext_resource type="Script" uid="uid://bbbrf5ckydfna" path="res://Scripts/Player/Driver.cs" id="1_blxc5"]
+[ext_resource type="Material" uid="uid://dtq8i1ka1f2pn" path="res://Assets/Materials/Health/CameraVignette.tres" id="2_oh6ef"]
+[ext_resource type="Material" uid="uid://nyh5tn1yoxeu" path="res://Assets/Materials/Health/CameraDistortion.tres" id="3_xm1lx"]
+[ext_resource type="Shader" uid="uid://btw6vsb6sa7sn" path="res://Shaders/Blur.gdshader" id="4_78cvr"]
+[ext_resource type="Script" uid="uid://dv7v1ywmbvvcd" path="res://Scripts/Player/HealthSystem.cs" id="6_6p6qs"]
+[ext_resource type="Script" uid="uid://vuq8rjq3vegn" path="res://Scripts/Player/Stamina.cs" id="7_o3pas"]
+[ext_resource type="Script" uid="uid://cwbvxlfvmocc1" path="res://Scripts/Player/StairsSystem.cs" id="8_e7bc2"]
+[ext_resource type="Script" uid="uid://dd1yrt7eiiyf4" path="res://Scripts/Player/CapsuleCollider.cs" id="9_y2a3m"]
+[ext_resource type="Script" uid="uid://bt0xv2q8iv1vn" path="res://Scripts/Player/Gravity.cs" id="10_no1ru"]
+[ext_resource type="Script" uid="uid://g8idirw62qe0" path="res://Scripts/Player/Bobbing.cs" id="11_e6d5r"]
+[ext_resource type="Script" uid="uid://c6bx47wr7fbdm" path="res://Scripts/Player/Mouse.cs" id="12_n1vrk"]
+[ext_resource type="Script" uid="uid://b6k73aj5povgv" path="res://Scripts/Player/FieldOfView.cs" id="13_sinb0"]
+[ext_resource type="Script" uid="uid://bt8flen3mi28r" path="res://Scripts/Player/AnimationPlayer.cs" id="14_n6e7l"]
+[ext_resource type="Script" uid="uid://bkxkx31n80rq3" path="res://Scripts/WeaponsSystem/WeaponsSystem.cs" id="15_32jrw"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xc2g5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wydro"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o1np4"]
+shader = ExtResource("4_78cvr")
+shader_parameter/limit = 0.0
+shader_parameter/blur = 0.0
+
+[sub_resource type="Animation" id="Animation_vcu7l"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_tsmqm"]
+resource_name = "player_head_on_dying1"
+
+[sub_resource type="Animation" id="Animation_6iwn4"]
+resource_name = "players_head_on_dying"
+length = 8.0
+step = 5.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("Head:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("Head:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1.5, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1.1, -0.25, 0, 0.25, 0, 1.05, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.358541, 0.995647, 2, 4.7)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vd0e2"]
+_data = {
+&"RESET": SubResource("Animation_vcu7l"),
+&"player_head_on_dying1": SubResource("Animation_tsmqm"),
+&"players_head_on_dying": SubResource("Animation_6iwn4")
+}
+
+[sub_resource type="Resource" id="Resource_h4iuc"]
+metadata/__load_path__ = "res://Assets/Models3D/Decals/BulletHoles/Metal/decals_metal_None_BaseColor.png"
+
+[sub_resource type="Resource" id="Resource_fd4e3"]
+metadata/__load_path__ = "res://Assets/Models3D/Decals/BulletHoles/Metal/decals_metal_None_Normal.png"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mlrlp"]
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.86167, -4)
+script = ExtResource("1_blxc5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_xc2g5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_wydro")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.68, 0)
+
+[node name="CameraSmooth" type="Node3D" parent="Head"]
+
+[node name="Camera3D" type="Camera3D" parent="Head/CameraSmooth"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+current = true
+
+[node name="CLVignette(Layer_1)" type="CanvasLayer" parent="Head/CameraSmooth/Camera3D"]
+
+[node name="HealthVignetteRect" type="ColorRect" parent="Head/CameraSmooth/Camera3D/CLVignette(Layer_1)"]
+material = ExtResource("2_oh6ef")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CLDistortion(Layer_2)" type="CanvasLayer" parent="Head/CameraSmooth/Camera3D"]
+layer = 2
+
+[node name="HealthDistortionRect" type="ColorRect" parent="Head/CameraSmooth/Camera3D/CLDistortion(Layer_2)"]
+material = ExtResource("3_xm1lx")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CLBlur(Layer_2)" type="CanvasLayer" parent="Head/CameraSmooth/Camera3D"]
+layer = 2
+
+[node name="BlurRect" type="ColorRect" parent="Head/CameraSmooth/Camera3D/CLBlur(Layer_2)"]
+material = SubResource("ShaderMaterial_o1np4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RayCast3D" type="RayCast3D" parent="Head/CameraSmooth/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.64723)
+visible = false
+
+[node name="rifle2" parent="Head/CameraSmooth/Camera3D"]
+transform = Transform3D(0.00488498, 0, -0.0998806, 0, 0.1, 0, 0.0998806, 0, 0.00488498, 0.0991917, -0.0239999, 0.13702)
+
+[node name="HealthSystem" type="Node3D" parent="."]
+script = ExtResource("6_6p6qs")
+_distortionSizeMax = 1.0
+_activeZoneMultiplierMin = 0.45
+_activeZoneMultiplierMax = 0.475
+_multiplierDeltaForAnimation = 0.066
+_speedMin = 2.95
+_timeInSecondsBeforeRegeneration = 5.5
+
+[node name="Stamina" type="Node3D" parent="."]
+script = ExtResource("7_o3pas")
+
+[node name="StairsAheadRayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.828)
+target_position = Vector3(0, -0.55, 0)
+
+[node name="StairsBelowRayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, -0.75, 0)
+
+[node name="StairsSystem" type="Node3D" parent="."]
+script = ExtResource("8_e7bc2")
+
+[node name="CapsuleCollider" type="Node3D" parent="."]
+script = ExtResource("9_y2a3m")
+
+[node name="Gravity" type="Node3D" parent="."]
+script = ExtResource("10_no1ru")
+
+[node name="Bobbing" type="Node3D" parent="."]
+script = ExtResource("11_e6d5r")
+
+[node name="Mouse" type="Node3D" parent="."]
+script = ExtResource("12_n1vrk")
+
+[node name="FieldOfView" type="Node3D" parent="."]
+script = ExtResource("13_sinb0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vd0e2")
+}
+script = ExtResource("14_n6e7l")
+
+[node name="HeadCollisionDetectors" type="Node3D" parent="."]
+
+[node name="HeadCollisionDetector0" type="RayCast3D" parent="HeadCollisionDetectors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, -0.210707)
+target_position = Vector3(0, 1, 0)
+
+[node name="HeadCollisionDetector1" type="RayCast3D" parent="HeadCollisionDetectors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0.23061)
+target_position = Vector3(0, 1, 0)
+
+[node name="HeadCollisionDetector2" type="RayCast3D" parent="HeadCollisionDetectors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.296, 1.4, 0)
+target_position = Vector3(0, 1, 0)
+
+[node name="HeadCollisionDetector3" type="RayCast3D" parent="HeadCollisionDetectors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.296, 1.4, 0)
+target_position = Vector3(0, 1, 0)
+
+[node name="WeaponsSystem" type="Node3D" parent="."]
+script = ExtResource("15_32jrw")
+_albedoMetal = SubResource("Resource_h4iuc")
+_normalMetal = SubResource("Resource_fd4e3")
+_ormMetal = SubResource("CompressedTexture2D_mlrlp")
