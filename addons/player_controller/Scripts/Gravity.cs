@@ -5,10 +5,10 @@ namespace Exodus.Scripts.Player.PlayerController;
 public partial class Gravity: Node3D
 {
     [Export(PropertyHint.Range, "50,110,")]
-    private int _weight = 70;
+    public float _weight = 70;
     
-    [Export] private float StartVelocity = 3f;
-    [Export] private float AdditionalGravityPower = 2f;
+    [Export] public float StartVelocity = 3f;
+    [Export] public float AdditionalGravityPower = 2f;
     
     private float _gravity;
 

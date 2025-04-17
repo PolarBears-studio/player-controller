@@ -2,13 +2,24 @@
 
 namespace Exodus.Scripts.Player.PlayerController;
 
-public partial class Driver : CharacterBody3D
+public partial class PlayerController : CharacterBody3D
 {
-	[Export] private float WalkSpeed = 5.0f;
-	[Export] private float SprintSpeed = 7.2f;
+	// User code API
+	public Node3D          Head;
+	public Bobbing         Bobbing;
+	public FieldOfView     FieldOfView;
+	public Stamina         Stamina;
+	public StairsSystem    StairsSystem;
+	public CapsuleCollider CapsuleCollider;
+	public Gravity         Gravity;
+	public HealthSystem    HealthSystem;
+	public Mouse           Mouse;
 
-	[Export] private float CrouchSpeed = 2.5f;
-	[Export] private float CrouchTransitionSpeed = 20.0f;
+	[Export] public float WalkSpeed = 5.0f;
+	[Export] public float SprintSpeed = 7.2f;
+
+	[Export] public float CrouchSpeed = 2.5f;
+	[Export] public float CrouchTransitionSpeed = 20.0f;
 
 	private float _currentSpeed;
 
@@ -17,11 +28,11 @@ public partial class Driver : CharacterBody3D
 
 	private float _lastFrameWasOnFloor = -Mathf.Inf;
 
-	private Node3D _head;
 	private const int NumOfHeadCollisionDetectors = 4;
 	private RayCast3D[] _headCollisionDetectors;
 
 	// Other Components
+	private Node3D _head;
 	private Bobbing _bobbing;
 	private FieldOfView _fieldOfView;
 	private Stamina _stamina;
@@ -109,6 +120,17 @@ public partial class Driver : CharacterBody3D
 		
 		_mouse = GetNode<Mouse>("Mouse");
 		_mouse.Init(_head, camera, _healthSystem.IsDead);
+
+		// Initialize user code API
+		Head = _head;
+		Bobbing = _bobbing;
+		FieldOfView = _fieldOfView;
+		Stamina = _stamina;
+		StairsSystem = _stairsSystem;
+		CapsuleCollider = _capsuleCollider;
+		Gravity = _gravity;
+		HealthSystem = _healthSystem;
+		Mouse = _mouse;
 	}
 
 	public override void _PhysicsProcess(double delta)
