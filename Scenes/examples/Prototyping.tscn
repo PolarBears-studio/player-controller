@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://wutrtu8whdcj"]
+
+[ext_resource type="Script" uid="uid://dxwc3ecsms3bo" path="res://Scripts/GameManager.cs" id="1_uoo61"]
+[ext_resource type="PackedScene" uid="uid://db2h3t17k37pe" path="res://Scenes/examples/World.tscn" id="2_1owot"]
+
+[node name="Prototyping" type="Node3D"]
+script = ExtResource("1_uoo61")
+
+[node name="World" parent="." instance=ExtResource("2_1owot")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 2)
