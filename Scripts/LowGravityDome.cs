@@ -12,15 +12,15 @@ public partial class LowGravityDome : Area3D
 		BodyEntered += (Node3D body) =>
 		{
 			if (body is PlayerController player) {
-				player.Gravity.AdditionalGravityPower *= GravityReduction;
-				GD.Print("player.Gravity.AdditionalGravityPower = ", player.Gravity.AdditionalGravityPower);
+				player.Gravity.SetAdditionalGravityPower(player.Gravity.GetAdditionalGravityPower() * GravityReduction);
+				GD.Print("player.Gravity.AdditionalGravityPower = ", player.Gravity.GetAdditionalGravityPower());
 			}
 		};
 		BodyExited += (Node3D body) =>
 		{
 			if (body is PlayerController player) {
-				player.Gravity.AdditionalGravityPower /= GravityReduction;
-				GD.Print("player.Gravity.AdditionalGravityPower = ", player.Gravity.AdditionalGravityPower);
+				player.Gravity.SetAdditionalGravityPower(player.Gravity.GetAdditionalGravityPower() / GravityReduction);
+				GD.Print("player.Gravity.AdditionalGravityPower = ", player.Gravity.GetAdditionalGravityPower());
 			}
 		};
 	}

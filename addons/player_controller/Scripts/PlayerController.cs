@@ -15,11 +15,37 @@ public partial class PlayerController : CharacterBody3D
 	public HealthSystem    HealthSystem;
 	public Mouse           Mouse;
 
-	[Export] public float WalkSpeed = 5.0f;
-	[Export] public float SprintSpeed = 7.2f;
+	[Export] private float WalkSpeed = 5.0f;
+	public float GetWalkSpeed() {
+		return WalkSpeed;
+	}
+	public void SetWalkSpeed(float value) {
+		WalkSpeed = value;
+	}
 
-	[Export] public float CrouchSpeed = 2.5f;
-	[Export] public float CrouchTransitionSpeed = 20.0f;
+	[Export] private float SprintSpeed = 7.2f;
+	public float GetSprintSpeed() {
+		return SprintSpeed;
+	}
+	public void SetSprintSpeed(float value) {
+		SprintSpeed = value;
+	}
+
+	[Export] private float CrouchSpeed = 2.5f;
+	public float GetCrouchSpeed() {
+		return CrouchSpeed;
+	}
+	public void SetCrouchSpeed(float value) {
+		CrouchSpeed = value;
+	}
+
+	[Export] private float CrouchTransitionSpeed = 20.0f;
+	public float GetCrouchTransitionSpeed() {
+		return CrouchTransitionSpeed;
+	}
+	public void SetCrouchTransitionSpeed(float value) {
+		CrouchTransitionSpeed = value;
+	}
 
 	private float _currentSpeed;
 
