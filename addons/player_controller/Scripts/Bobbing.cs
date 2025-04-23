@@ -4,8 +4,10 @@ namespace Exodus.Scripts.Player.PlayerController;
 
 public partial class Bobbing: Node3D
 {
-    [Export] private float BobbingFrequency = 2.4f;
-    [Export] private float BobbingAmplitude = 0.08f;
+    [Export(PropertyHint.Range, "0,10,,or_greater")]
+    public float BobbingFrequency { set; get; } = 2.4f;
+    [Export(PropertyHint.Range, "0,0.4,,or_greater")]
+    public float BobbingAmplitude { set; get; } = 0.08f;
     
     private Camera3D _camera;
 

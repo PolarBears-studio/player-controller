@@ -1,14 +1,19 @@
 ﻿using ExodusGlobal;
 using Godot;
 
+// RECOMMENDATION: Why not attached this script to the CollisionShape3D?
+
 namespace Exodus.Scripts.Player.PlayerController;
 
 public partial class CapsuleCollider: Node3D
 {
+    // RECOMMENDATION rename to CapsuleStandHeight
+    [Export(PropertyHint.Range, "0,5.0,,suffix:m,or_greater")]
+    public float CapsuleDefaultHeight { get; set; } = 2.0f;
+    [Export(PropertyHint.Range, "0,5.0,,suffix:m,or_greater")]
+    public float CapsuleCrouchHeight  { get; set; } = 1.0f;
+
     private CapsuleShape3D _playerCapsuleShape;
-    
-    private const float CapsuleDefaultHeight = 2.0f;
-    private const float CapsuleCrouchHeight = 1.0f;
 
     public void Init(CapsuleShape3D playerCapsuleShape)
     {
@@ -23,21 +28,23 @@ public partial class CapsuleCollider: Node3D
         return _playerCapsuleShape.Height < CapsuleDefaultHeight;
     }
 
-    public bool BetweenCrouchingAndNormalHeight()
+    public bool IsBetweenCrouchingAndNormalHeight()
     {
-        return _playerCapsuleShape.Height > CapsuleCrouchHeight && _playerCapsuleShape.Height < CapsuleDefaultHeight;
+        return _playerCapsuleShape.Height > CapsuleCrouchHeight
+            && _playerCapsuleShape.Height < CapsuleDefaultHeight;
     }
 
     public bool IsDefaultHeight()
     {
-        return CustomMath.AreAlmostEqual(_playerCapsuleShape.Height,  CapsuleDefaultHeight);
+        return Mathf.IsEqualApprox(_playerCapsuleShape.Height,  CapsuleDefaultHeight);
     }
 
     public bool IsCrouchingHeight()
     {
-        return CustomMath.AreAlmostEqual(_playerCapsuleShape.Height, CapsuleCrouchHeight);
+        return Mathf.IsEqualApprox(_playerCapsuleShape.Height, CapsuleCrouchHeight);
     }
 
+    // RECOMMENDATION: name Crouch()
     public void PerformCrouching(float delta, float crouchTransitionSpeed)
     {
         _playerCapsuleShape.Height -= delta * crouchTransitionSpeed;
@@ -46,6 +53,7 @@ public partial class CapsuleCollider: Node3D
             _playerCapsuleShape.Height, CapsuleCrouchHeight, CapsuleDefaultHeight);
     }
 
+    // RECOMMENDATION: name Stand()
     public void UndoCrouching(float delta, float crouchTransitionSpeed)
     {
         _playerCapsuleShape.Height += delta * crouchTransitionSpeed;
