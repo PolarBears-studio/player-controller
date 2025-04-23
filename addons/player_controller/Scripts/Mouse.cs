@@ -5,10 +5,11 @@ namespace Exodus.Scripts.Player.PlayerController;
 
 public partial class Mouse : Node3D
 {
+    [Export(PropertyHint.Range, "0,0.1,,or_greater")]
+    public float Sensitivity { get; set; } = 0.004f;
     
     private Node3D _head;
     private Camera3D _camera;
-    private const float Sensitivity = 0.004f;
 
     public delegate bool IsDead();
 
@@ -16,7 +17,7 @@ public partial class Mouse : Node3D
     
     public void Init(Node3D head, Camera3D cam, IsDead isDeadFunc)
     {
-        Input.MouseMode = Input.MouseModeEnum.Captured;
+        Input.SetMouseMode(Input.MouseModeEnum.Captured);
         
         _head = head;
         _camera = cam;
@@ -25,7 +26,10 @@ public partial class Mouse : Node3D
 
     public override void _UnhandledInput(InputEvent @event)
     {
-        if (_isPlayerDead()) return;
+        if (_isPlayerDead())
+        {
+            return;
+        }
         
         if (@event is InputEventMouseMotion eventMouseMotion)
         {

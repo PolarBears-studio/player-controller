@@ -5,12 +5,14 @@ namespace Exodus.Scripts.Player.PlayerController;
 
 public partial class StairsSystem: Node3D
 {
+    [Export(PropertyHint.Range, "0,1,,suffix:m,or_greater")]
+    public float MaxStepHeight = 0.5f;
+
     private RayCast3D _stairsBelowRayCast3D;
     private RayCast3D _stairsAheadRayCast3D;
 
     private Node3D _cameraSmooth;
 	
-    private const float MaxStepHeight = 0.5f;
     private bool _snappedToStairsLastFrame;
 	
     private Vector3? _savedCameraGlobalPos;

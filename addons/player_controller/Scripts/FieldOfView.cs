@@ -4,9 +4,12 @@ namespace Exodus.Scripts.Player.PlayerController;
 
 public partial class FieldOfView: Node3D
 {
-    [Export] private float BaseFov = 75.0f;
-    [Export] private float FovChangeFactor = 1.2f;
-    [Export] private float FovChangeSpeed = 6.25f;
+    [Export(PropertyHint.Range, "0,180,,degrees")]
+    public float BaseFov         { get; set; } = 75.0f;
+    [Export(PropertyHint.Range, "0,10,,or_greater")]
+    public float FovChangeFactor { get; set; } = 1.2f;
+    [Export(PropertyHint.Range, "0,10,,or_greater")]
+    public float FovChangeSpeed  { get; set; } = 6.25f;
     
     private Camera3D _camera;
 
@@ -23,10 +26,11 @@ public partial class FieldOfView: Node3D
         public Vector3 Velocity;
     }
     
+    // RECOMMENDATION: AdjustFov or SetFov
     public void PerformFovAdjustment(FovParameters parameters)
     {
         float velocityClamped = Mathf.Clamp(
-            parameters.Velocity.Length(), 0.5f, parameters.SprintSpeed * 2);
+            parameters.Velocity.Length(), 0.5f, parameters.SprintSpeed * 2.0f);
 
         float targetFov = BaseFov + FovChangeFactor * velocityClamped;
 			
