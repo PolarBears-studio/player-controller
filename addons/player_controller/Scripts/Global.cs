@@ -42,29 +42,6 @@ namespace ExodusGlobal
         public const string Dirt = "Dirt";
     }
     
-    public class CustomMath
-    {
-        public static float Lerp(float from, float to, float weight)
-        {
-            float result = Mathf.Lerp(
-                from, to, weight);
-
-            if (AreAlmostEqual(result, to)) return to;
-            
-            return result;
-        }
-        
-        public static bool AreAlmostEqual(float a, float b)
-        {
-            float aAbs = Mathf.Abs(a);
-            float bAbs = Mathf.Abs(b);
-            
-            float maxBetweenAbsolutes = Mathf.Max(aAbs, bAbs);
-            
-            return Mathf.Abs(a - b) <= Constants.ACCEPTABLE_TOLERANCE * Mathf.Max(1.0f, maxBetweenAbsolutes);
-        }
-    }
-
     public class Randomization
     {
         private static Random _random = new();

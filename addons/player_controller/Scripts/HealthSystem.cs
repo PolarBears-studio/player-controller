@@ -300,7 +300,7 @@ public partial class HealthSystem : Node3D
 
 	private void HandleVignetteShader(float delta)
 	{
-		if (CustomMath.AreAlmostEqual(CurrentHealth, MaxHealth))
+		if (Mathf.IsEqualApprox(CurrentHealth, MaxHealth))
 		{
 			_currentHealthInPrevFrame = CurrentHealth;
 			_currentMultiplierMidValue = InitialMultiplierMidVal;
@@ -311,14 +311,14 @@ public partial class HealthSystem : Node3D
 		float healthNormalized = CurrentHealth / MaxHealth;
 		float healthReverted = 1 - healthNormalized;
 		
-		float newAnimationSpeed = CustomMath.Lerp(SpeedMin, SpeedMax, healthReverted);
-		_currentSpeed = CustomMath.Lerp(_currentSpeed, newAnimationSpeed, delta);
+		float newAnimationSpeed = Mathf.Lerp(SpeedMin, SpeedMax, healthReverted);
+		_currentSpeed = Mathf.Lerp(_currentSpeed, newAnimationSpeed, delta);
 		
 		float completeSinCycle = Mathf.Tau / _currentSpeed;
 
 		_timeAccumulator += delta;
 		
-		if (CustomMath.AreAlmostEqual(completeSinCycle, _timeAccumulator))
+		if (_timeAccumulator >= completeSinCycle)
 		{
 			_timeAccumulator = 0;
 		}
@@ -333,18 +333,18 @@ public partial class HealthSystem : Node3D
 		
 		if (difference < 0)
 		{
-			newMultiplierMidValue = CustomMath.Lerp(
+			newMultiplierMidValue = Mathf.Lerp(
 				MultiplierMidValToHideVignette, ActiveZoneMultiplierMin, healthReverted);
 		} else
 		{
-			newMultiplierMidValue = CustomMath.Lerp(
+			newMultiplierMidValue = Mathf.Lerp(
 				ActiveZoneMultiplierMax, ActiveZoneMultiplierMin, healthReverted);
 		}
 		
-		_currentMultiplierMidValue = CustomMath.Lerp(
+		_currentMultiplierMidValue = Mathf.Lerp(
 			_currentMultiplierMidValue, newMultiplierMidValue,  delta);
 			
-		float multiplier = CustomMath.Lerp(_currentMultiplierMidValue + MultiplierDeltaForAnimation,
+		float multiplier = Mathf.Lerp(_currentMultiplierMidValue + MultiplierDeltaForAnimation,
 			_currentMultiplierMidValue - MultiplierDeltaForAnimation,
 			animationWeight * animationWeight);
 
@@ -357,7 +357,7 @@ public partial class HealthSystem : Node3D
 
 	private void HandleDistortionShader(float delta)
 	{
-		if (CustomMath.AreAlmostEqual(CurrentHealth, MaxHealth))
+		if (Mathf.IsEqualApprox(CurrentHealth, MaxHealth))
 		{
 			return;
 		}
@@ -485,7 +485,7 @@ public partial class HealthSystem : Node3D
 			return;
 		}
 		
-		if (CustomMath.AreAlmostEqual(CurrentHealth, MaxHealth))
+		if (Mathf.IsEqualApprox(CurrentHealth, MaxHealth))
 		{
 			CurrentHealth = MaxHealth;
 			_lastHitTime = null;

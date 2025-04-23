@@ -215,7 +215,7 @@ public partial class StairsSystem: Node3D
 		
 		float differenceInPhysicalFrames = Engine.GetPhysicsFrames() - parameters.LastFrameWasOnFloor;
 		
-		bool wasOnFloorLastFrame = CustomMath.AreAlmostEqual(differenceInPhysicalFrames, 1.0f);
+		bool wasOnFloorLastFrame = Mathf.IsEqualApprox(differenceInPhysicalFrames, 1.0f);
 
 		PhysicsTestMotionResult3D bodyTestResult = new PhysicsTestMotionResult3D();
 
@@ -333,7 +333,7 @@ public partial class StairsSystem: Node3D
 			positionForModification.Y = 0.05f;
 		}
 		
-		positionForModification.Y = CustomMath.Lerp(
+		positionForModification.Y = Mathf.Lerp(
 			_cameraSmooth.Position.Y, 0.0f,  _lerpingWeight  * parameters.Delta);
 	    
 		_cameraSmooth.Position = positionForModification;
