@@ -421,9 +421,7 @@ public partial class HealthSystem : Node3D
 
 		if (_cameraRotation == Rotation.CameraRotationTriggered)
 		{
-			float randomVal = GameManager.Instance.GetRandomFloatBetween0And1();
-			
-			if (randomVal < 0.5f)
+			if (GD.Randi() % 2 == 0)
 			{
 				_targetRotationZAxis = Mathf.DegToRad(RotationDegree * -1);
 			}

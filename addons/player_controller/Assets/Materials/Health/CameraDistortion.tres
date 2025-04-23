@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://nyh5tn1yoxeu"]
+
+[ext_resource type="Shader" uid="uid://b11c2xtiflut5" path="res://addons/player_controller/Shaders/Distortion.gdshader" id="1_juoo3"]
+[ext_resource type="Texture2D" uid="uid://woq2hudxhckr" path="res://addons/player_controller/Assets/Textures/PerlinNoise/Gabor 1 - 512x512.png" id="2_1owvs"]
+
+[resource]
+shader = ExtResource("1_juoo3")
+shader_parameter/screen_darkness = 0.0
+shader_parameter/darkness_progression = 0.0
+shader_parameter/size = 0.0
+shader_parameter/uv_offset = null
+shader_parameter/smoke = ExtResource("2_1owvs")
