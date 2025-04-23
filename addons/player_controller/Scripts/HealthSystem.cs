@@ -318,7 +318,7 @@ public partial class HealthSystem : Node3D
 
 		_timeAccumulator += delta;
 		
-		if (CustomMath.AreAlmostEqual(completeSinCycle, _timeAccumulator))
+		if (_timeAccumulator > completeSinCycle)
 		{
 			_timeAccumulator = 0;
 		}

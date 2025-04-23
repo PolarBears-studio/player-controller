@@ -36,12 +36,12 @@ public partial class CapsuleCollider: Node3D
 
     public bool IsDefaultHeight()
     {
-        return Mathf.IsEqualApprox(_playerCapsuleShape.Height,  CapsuleDefaultHeight);
+        return CustomMath.AreAlmostEqual(_playerCapsuleShape.Height,  CapsuleDefaultHeight);
     }
 
     public bool IsCrouchingHeight()
     {
-        return Mathf.IsEqualApprox(_playerCapsuleShape.Height, CapsuleCrouchHeight);
+        return CustomMath.AreAlmostEqual(_playerCapsuleShape.Height, CapsuleCrouchHeight);
     }
 
     // RECOMMENDATION: name Crouch()
