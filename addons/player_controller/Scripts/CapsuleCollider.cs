@@ -5,7 +5,6 @@ namespace Exodus.Scripts.Player.PlayerController;
 
 public partial class CapsuleCollider: CollisionShape3D
 {
-    // RECOMMENDATION rename to CapsuleStandHeight
     [Export(PropertyHint.Range, "0,5.0,,suffix:m,or_greater")]
     public float CapsuleDefaultHeight { get; set; } = 2.0f;
     [Export(PropertyHint.Range, "0,5.0,,suffix:m,or_greater")]

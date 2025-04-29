@@ -15,8 +15,6 @@ public partial class HealthSystem : Node3D
 		ReturningBack = 3,
 	}
 	
-	// RECOMMENDATION: No max for these, users may want their own health range
-	// or a max that goes way above 100 for leveling purposes
 	[ExportGroup("Health Metrics")]
 	[ExportSubgroup("Amounts")]
 	[Export(PropertyHint.Range, "0,100,,or_greater")]
@@ -162,10 +160,6 @@ public partial class HealthSystem : Node3D
 	
 	public void Init(HealthSystemInitParams initParams)
 	{
-		// NOTE: There is no reason to both export CurrentHealth and set it equal
-		// to the max upon initialization. Should do either one or the other.
-		// Exporting it seems most useful to users of the addon.
-		CurrentHealth = MaxHealth;
 		_currentHealthInPrevFrame = CurrentHealth;
 		_currentMultiplierMidValue = InitialMultiplierMidVal;
 		

@@ -26,7 +26,6 @@ public partial class FieldOfView: Node3D
         public Vector3 Velocity;
     }
     
-    // RECOMMENDATION: AdjustFov or SetFov
     public void PerformFovAdjustment(FovParameters parameters)
     {
         float velocityClamped = Mathf.Clamp(
