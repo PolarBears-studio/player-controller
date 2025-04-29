@@ -1,4 +1,4 @@
-﻿using ExodusGlobal;
+﻿using PlayerControllerGlobal;
 using Godot;
 
 namespace Exodus.Scripts.Player.PlayerController;

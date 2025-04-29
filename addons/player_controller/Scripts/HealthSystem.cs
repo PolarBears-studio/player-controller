@@ -1,6 +1,6 @@
 using System;
 using Exodus.Scripts.Player.PlayerController;
-using ExodusGlobal;
+using PlayerControllerGlobal;
 using Godot;
 
 namespace Exodus.Scripts.Player;

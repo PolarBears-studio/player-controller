@@ -1,4 +1,4 @@
-﻿using ExodusGlobal;
+﻿using PlayerControllerGlobal;
 using Godot;
 
 // RECOMMENDATION: Why not attached this script to the CollisionShape3D?
