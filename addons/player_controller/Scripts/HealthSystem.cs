@@ -316,12 +316,7 @@ public partial class HealthSystem : Node3D
 		
 		float completeSinCycle = Mathf.Tau / _currentSpeed;
 
-		_timeAccumulator += delta;
-		
-		if (_timeAccumulator >= completeSinCycle)
-		{
-			_timeAccumulator = 0;
-		}
+		_timeAccumulator = Mathf.Wrap(_timeAccumulator + delta, 0.0f, Mathf.Tau);
 
 		float rawAnimationWeight = Mathf.Sin(_timeAccumulator * _currentSpeed);
 
