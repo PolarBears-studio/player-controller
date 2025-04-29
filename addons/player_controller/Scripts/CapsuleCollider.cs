@@ -42,15 +42,13 @@ public partial class CapsuleCollider: CollisionShape3D
         return Mathf.IsEqualApprox(_shape.Height, CapsuleCrouchHeight);
     }
 
-    // RECOMMENDATION: name Crouch()
-    public void PerformCrouching(float delta, float crouchTransitionSpeed)
+    public void Crouch(float delta, float crouchTransitionSpeed)
     {
         _shape.Height -= delta * crouchTransitionSpeed;
         
         _shape.Height = Mathf.Clamp(_shape.Height, CapsuleCrouchHeight, CapsuleDefaultHeight);
     }
 
-    // RECOMMENDATION: name Stand()
     public void UndoCrouching(float delta, float crouchTransitionSpeed)
     {
         _shape.Height += delta * crouchTransitionSpeed;

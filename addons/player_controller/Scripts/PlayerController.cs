@@ -157,7 +157,7 @@ public partial class PlayerController : CharacterBody3D
 			if (Input.IsActionPressed("crouch") ||
 			    (doesCapsuleHaveCrouchingHeight && isHeadTouchingCeiling))
 			{
-				CapsuleCollider.PerformCrouching((float)delta, CrouchTransitionSpeed);
+				CapsuleCollider.Crouch((float)delta, CrouchTransitionSpeed);
 				_currentSpeed = CrouchSpeed;
 			}
 			// Used both for the moment when we exit the crouching mode and for the moment when we just walk
