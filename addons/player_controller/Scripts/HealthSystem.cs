@@ -27,7 +27,7 @@ public partial class HealthSystem : Node3D
 	public float MinimalDamageUnit { get; set; } = 25.0f;
 	[ExportSubgroup("Regeneration")]
 	[Export(PropertyHint.Range, "0,10,,suffix:s,or_greater")]
-	public float SecondsBeforeRegeneration { get; set; } = 10.0f;
+	public float SecondsBeforeRegeneration { get; set; } = 5.5f;
 	[Export(PropertyHint.Range, "0,10,,or_greater")]
 	public float RegenerationSpeed { get; set; } = 10.0f;
 
@@ -51,20 +51,20 @@ public partial class HealthSystem : Node3D
 	[Export(PropertyHint.Range, "0.0,1.0,")]
 	public float DistortionSizeMin { get; set; } = 0.0f;
 	[Export(PropertyHint.Range, "0.0,1.0,")]
-	public float DistortionSizeMax { get; set; } = 0.008f;
+	public float DistortionSizeMax { get; set; } = 1.0f;
 	[ExportSubgroup("Vignetting")]
 	// NOTE: These limits seem arbitrary, perhaps [0, 1] would be better?
 	[Export(PropertyHint.Range, "0.0,0.5,")]
-	public float ActiveZoneMultiplierMin { get; set; } = 0.0f;
+	public float ActiveZoneMultiplierMin { get; set; } = 0.45f;
 	[Export(PropertyHint.Range, "0.0,0.6,")]
 	// NOTE: what value should this default to? It is never set.
-	public float ActiveZoneMultiplierMax { get; set; }
+	public float ActiveZoneMultiplierMax { get; set; } = 0.475f;
 	[Export(PropertyHint.Range, "0.0,1.0,,or_greater")]
-	public float MultiplierDeltaForAnimation { get; set; } = 0.1f;
+	public float MultiplierDeltaForAnimation { get; set; } = 0.066f;
 	[Export(PropertyHint.Range, "0.0,1.0,")]
 	public float Softness { get; set; } = 1.0f;
 	// NOTE: is this referring to animation speed??
-	[Export] public float SpeedMin { get; set; } = 1.6f;
+	[Export] public float SpeedMin { get; set; } = 2.95f;
 	[Export] public float SpeedMax { get; set; } = 4.0f;
 
 	// Death / GameOver
