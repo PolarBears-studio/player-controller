@@ -114,9 +114,10 @@ script = ExtResource("1_poq2x")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_xc2g5")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CapsuleCollider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_wydro")
+script = ExtResource("8_lmtjd")
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.68, 0)
@@ -181,9 +182,6 @@ target_position = Vector3(0, -0.75, 0)
 
 [node name="StairsSystem" type="Node3D" parent="."]
 script = ExtResource("7_bmt5a")
-
-[node name="CapsuleCollider" type="Node3D" parent="."]
-script = ExtResource("8_lmtjd")
 
 [node name="Gravity" type="Node3D" parent="."]
 script = ExtResource("9_lsueh")

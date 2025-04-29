@@ -52,9 +52,6 @@ public partial class PlayerController : CharacterBody3D
 
 		Node3D cameraSmooth = GetNode<Node3D>("Head/CameraSmooth");
 
-		CollisionShape3D collisionShape = GetNode<CollisionShape3D>("CollisionShape3D");
-		CapsuleShape3D playerCapsuleShape = collisionShape.Shape as CapsuleShape3D;
-
 		AnimationPlayer animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		
 		// Getting universal setting from GODOT editor to be in sync
@@ -85,7 +82,6 @@ public partial class PlayerController : CharacterBody3D
 		StairsSystem.Init(stairsBelowRayCast3D, stairsAheadRayCast3D, cameraSmooth);
 
 		CapsuleCollider = GetNode<CapsuleCollider>("CapsuleCollider");
-		CapsuleCollider.Init(playerCapsuleShape);
 
 		Gravity = GetNode<Gravity>("Gravity");
 		Gravity.Init(gravitySetting);
