@@ -21,7 +21,7 @@ window/size/resizable=false
 
 [dotnet]
 
-project/assembly_name="Exodus"
+project/assembly_name="PlayerControllerAddon"
 
 [editor_plugins]
 

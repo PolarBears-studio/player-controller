@@ -1,6 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exodus", "Exodus.csproj", "{99F93EBF-7108-49ED-A51E-48F8B042DA5B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerControllerAddon", "PlayerControllerAddon.csproj", "{99F93EBF-7108-49ED-A51E-48F8B042DA5B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
