@@ -1,7 +1,6 @@
-﻿using PlayerControllerGlobal;
-using Godot;
+﻿using Godot;
 
-namespace Exodus.Scripts.Player.PlayerController;
+namespace PolarBears.PlayerControllerAddon;
 
 public partial class StairsSystem: Node3D
 {

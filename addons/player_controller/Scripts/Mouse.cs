@@ -1,7 +1,7 @@
 ﻿using System;
 using Godot;
 
-namespace Exodus.Scripts.Player.PlayerController;
+namespace PolarBears.PlayerControllerAddon;
 
 public partial class Mouse : Node3D
 {

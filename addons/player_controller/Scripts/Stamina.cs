@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-namespace Exodus.Scripts;
+namespace PolarBears.PlayerControllerAddon;
 
 public partial class Stamina : Node
 {
@@ -18,8 +18,8 @@ public partial class Stamina : Node
 
 	public void SetSpeeds(float walkSpeed, float sprintSpeed)
 	{
-		this._walkSpeed = walkSpeed;
-		this._sprintSpeed = sprintSpeed;
+		_walkSpeed = walkSpeed;
+		_sprintSpeed = sprintSpeed;
 	}
 
 	public float AccountStamina(double delta, float wantedSpeed)

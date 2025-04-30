@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-namespace Exodus.Scripts.Player.PlayerController;
+namespace PolarBears.PlayerControllerAddon;
 
 public partial class FieldOfView: Node3D
 {

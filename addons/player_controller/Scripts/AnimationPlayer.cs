@@ -1,4 +1,4 @@
-using PlayerControllerGlobal;
+using PolarBears.PlayerControllerAddon;
 
 public partial class AnimationPlayer : Godot.AnimationPlayer
 {

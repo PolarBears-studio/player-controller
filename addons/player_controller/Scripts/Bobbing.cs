@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-namespace Exodus.Scripts.Player.PlayerController;
+namespace PolarBears.PlayerControllerAddon;
 
 public partial class Bobbing: Node3D
 {

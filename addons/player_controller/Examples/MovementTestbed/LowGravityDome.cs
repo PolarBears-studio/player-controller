@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-namespace Exodus.Scripts.Player.PlayerController;
+namespace PolarBears.PlayerControllerAddon;
 
 public partial class LowGravityDome : Area3D
 {
@@ -13,14 +13,14 @@ public partial class LowGravityDome : Area3D
 		{
 			if (body is PlayerController player) {
 				player.Gravity.AdditionalGravityPower *= GravityReduction;
-				GD.Print("player.Gravity.AdditionalGravityPower = ", player.Gravity.AdditionalGravityPower);
+				GD.Print("Low Gravity Zone Entered");
 			}
 		};
 		BodyExited += (Node3D body) =>
 		{
 			if (body is PlayerController player) {
 				player.Gravity.AdditionalGravityPower /= GravityReduction;
-				GD.Print("player.Gravity.AdditionalGravityPower = ", player.Gravity.AdditionalGravityPower);
+				GD.Print("Low Gravity Zone Exited");
 			}
 		};
 	}

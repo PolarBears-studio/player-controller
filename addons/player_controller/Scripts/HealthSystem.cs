@@ -1,9 +1,7 @@
 using System;
-using Exodus.Scripts.Player.PlayerController;
-using PlayerControllerGlobal;
 using Godot;
 
-namespace Exodus.Scripts.Player;
+namespace PolarBears.PlayerControllerAddon;
 
 public partial class HealthSystem : Node3D
 {
