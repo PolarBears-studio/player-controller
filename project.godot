@@ -10,14 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Exodus"
+config/name="PlayerControllerAddon"
 run/main_scene="uid://db2h3t17k37pe"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="res://icon.svg"
-
-[autoload]
-
-RuntimeDebugTools="*res://addons/runtime_debug_tools/scenes/remote_inspector.tscn"
 
 [display]
 
@@ -29,7 +25,7 @@ project/assembly_name="Exodus"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Stairs3D/plugin.cfg", "res://addons/runtime_debug_tools/plugin.cfg")
+enabled=PackedStringArray()
 
 [filesystem]
 

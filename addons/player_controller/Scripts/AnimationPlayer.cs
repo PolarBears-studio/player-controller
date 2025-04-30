@@ -1,7 +1,4 @@
-using ExodusGlobal;
-
-// NOTE: Recommend removing this script to simplify codebase.
-//       The one function it defines can easily be defined in Driver.cs
+using PolarBears.PlayerControllerAddon;
 
 public partial class AnimationPlayer : Godot.AnimationPlayer
 {

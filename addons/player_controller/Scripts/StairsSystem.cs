@@ -1,11 +1,10 @@
-﻿using ExodusGlobal;
-using Godot;
+﻿using Godot;
 
-namespace Exodus.Scripts.Player.PlayerController;
+namespace PolarBears.PlayerControllerAddon;
 
 public partial class StairsSystem: Node3D
 {
-    [Export(PropertyHint.Range, "0,1,,suffix:m,or_greater")]
+    [Export(PropertyHint.Range, "0,10,0.01,suffix:m,or_greater")]
     public float MaxStepHeight = 0.5f;
 
     private RayCast3D _stairsBelowRayCast3D;

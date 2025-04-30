@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-namespace Exodus.Scripts.Player.PlayerController;
+namespace PolarBears.PlayerControllerAddon;
 
 public partial class PlayerController : CharacterBody3D
 {
@@ -15,10 +15,14 @@ public partial class PlayerController : CharacterBody3D
 	public HealthSystem    HealthSystem;
 	public Mouse           Mouse;
 
-	[Export] public float WalkSpeed             { get; set; } = 5.0f;
-	[Export] public float SprintSpeed           { get; set; } = 7.2f;
-	[Export] public float CrouchSpeed           { get; set; } = 2.5f;
-	[Export] public float CrouchTransitionSpeed { get; set; } = 20.0f;
+	[Export(PropertyHint.Range, "0,20,0.1,or_greater")]
+	public float WalkSpeed             { get; set; } = 5.0f;
+	[Export(PropertyHint.Range, "0,20,0.1,or_greater")]
+	public float SprintSpeed           { get; set; } = 7.2f;
+	[Export(PropertyHint.Range, "0,10,0.1,or_greater")]
+	public float CrouchSpeed           { get; set; } = 2.5f;
+	[Export(PropertyHint.Range, "0,100,0.1,or_greater")]
+	public float CrouchTransitionSpeed { get; set; } = 20.0f;
 
 	private float _currentSpeed;
 
@@ -52,9 +56,6 @@ public partial class PlayerController : CharacterBody3D
 
 		Node3D cameraSmooth = GetNode<Node3D>("Head/CameraSmooth");
 
-		CollisionShape3D collisionShape = GetNode<CollisionShape3D>("CollisionShape3D");
-		CapsuleShape3D playerCapsuleShape = collisionShape.Shape as CapsuleShape3D;
-
 		AnimationPlayer animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		
 		// Getting universal setting from GODOT editor to be in sync
@@ -85,7 +86,6 @@ public partial class PlayerController : CharacterBody3D
 		StairsSystem.Init(stairsBelowRayCast3D, stairsAheadRayCast3D, cameraSmooth);
 
 		CapsuleCollider = GetNode<CapsuleCollider>("CapsuleCollider");
-		CapsuleCollider.Init(playerCapsuleShape);
 
 		Gravity = GetNode<Gravity>("Gravity");
 		Gravity.Init(gravitySetting);
@@ -161,7 +161,7 @@ public partial class PlayerController : CharacterBody3D
 			if (Input.IsActionPressed("crouch") ||
 			    (doesCapsuleHaveCrouchingHeight && isHeadTouchingCeiling))
 			{
-				CapsuleCollider.PerformCrouching((float)delta, CrouchTransitionSpeed);
+				CapsuleCollider.Crouch((float)delta, CrouchTransitionSpeed);
 				_currentSpeed = CrouchSpeed;
 			}
 			// Used both for the moment when we exit the crouching mode and for the moment when we just walk
