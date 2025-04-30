@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bqhn1gb1m1nnt"
-path="res://.godot/imported/stairs.gltf-cb5fdfc767ac4fd235cd8143eeda95fe.scn"
+uid="uid://dcqt25cs53lmu"
+path="res://.godot/imported/stairs.glb-537001da52d771a15655a8e08e8e96a2.scn"
 
 [deps]
 
-source_file="res://addons/player_controller/Assets/Models/stairs.gltf"
-dest_files=["res://.godot/imported/stairs.gltf-cb5fdfc767ac4fd235cd8143eeda95fe.scn"]
+source_file="res://addons/player_controller/Assets/Models/stairs.glb"
+dest_files=["res://.godot/imported/stairs.glb-537001da52d771a15655a8e08e8e96a2.scn"]
 
 [params]
 
@@ -32,12 +32,6 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={
-"nodes": {
-"PATH:Stairs3D/_MeshInstance3D_24434": {
-"generate/physics": true
-}
-}
-}
+_subresources={}
 gltf/naming_version=1
 gltf/embedded_image_handling=1
