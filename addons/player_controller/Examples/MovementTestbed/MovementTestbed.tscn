@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bei4nhkf8lwdo" path="res://addons/player_controller/PlayerController.tscn" id="4_mphxi"]
 [ext_resource type="Script" uid="uid://76kdo52kmw2d" path="res://addons/Stairs3D/stairs_3d.gd" id="5_3ki8w"]
 [ext_resource type="ArrayMesh" uid="uid://dry23jeo6prdo" path="res://addons/player_controller/Examples/MovementTestbed/Hills/terrain_mesh.mesh" id="6_1eupo"]
-[ext_resource type="Script" uid="uid://ctypnlbfptf03" path="res://addons/player_controller/Examples/MovementTestbed/LowGravityDome.cs" id="7_qmg6d"]
+[ext_resource type="Script" uid="uid://ctypnlbfptf03" path="res://addons/player_controller/Examples/MovementTestbed/LowGravityArea3D.cs" id="7_qmg6d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_awgfw"]
 sky_top_color = Color(0.603922, 0.666667, 0.968627, 1)
