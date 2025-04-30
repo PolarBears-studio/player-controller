@@ -4,9 +4,9 @@ namespace PolarBears.PlayerControllerAddon;
 
 public partial class CapsuleCollider : CollisionShape3D
 {
-    [Export(PropertyHint.Range, "0,5.0,,suffix:m,or_greater")]
+    [Export(PropertyHint.Range, "0,5.0,0.01,suffix:m,or_greater")]
     public float CapsuleDefaultHeight { get; set; } = 2.0f;
-    [Export(PropertyHint.Range, "0,5.0,,suffix:m,or_greater")]
+    [Export(PropertyHint.Range, "0,5.0,0.01,suffix:m,or_greater")]
     public float CapsuleCrouchHeight  { get; set; } = 1.0f;
 
     public float GetCurrentHeight() { return _shape.Height; }

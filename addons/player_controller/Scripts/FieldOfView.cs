@@ -4,11 +4,11 @@ namespace PolarBears.PlayerControllerAddon;
 
 public partial class FieldOfView: Node3D
 {
-    [Export(PropertyHint.Range, "0,180,,degrees")]
+    [Export(PropertyHint.Range, "0,180,0.1,degrees")]
     public float BaseFov         { get; set; } = 75.0f;
-    [Export(PropertyHint.Range, "0,10,,or_greater")]
+    [Export(PropertyHint.Range, "0,10,0.01,or_greater")]
     public float FovChangeFactor { get; set; } = 1.2f;
-    [Export(PropertyHint.Range, "0,10,,or_greater")]
+    [Export(PropertyHint.Range, "0,10,0.01,or_greater")]
     public float FovChangeSpeed  { get; set; } = 6.25f;
     
     private Camera3D _camera;

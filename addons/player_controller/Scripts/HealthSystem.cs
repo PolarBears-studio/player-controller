@@ -15,90 +15,89 @@ public partial class HealthSystem : Node3D
 	
 	[ExportGroup("Health Metrics")]
 	[ExportSubgroup("Amounts")]
-	[Export(PropertyHint.Range, "0,100,,or_greater")]
-	public float MaxHealth { get; set; } = 100.0f;
-	[Export(PropertyHint.Range, "0,100,,or_greater")]
-	public float CurrentHealth { get; set; } = 100.0f;
-	[Export(PropertyHint.Range, "0,100,,or_greater")]
+	[Export(PropertyHint.Range, "0,100,0.1,or_greater")]
+	public float MaxHealth     { get; set; }     = 100.0f;
+	[Export(PropertyHint.Range, "0,100,0.1,or_greater")]
+	public float CurrentHealth { get; set; }     = 100.0f;
+	[Export(PropertyHint.Range, "0,100,0.1,or_greater")]
 	public float MinimalDamageUnit { get; set; } = 25.0f;
 	[ExportSubgroup("Regeneration")]
-	[Export(PropertyHint.Range, "0,10,,suffix:s,or_greater")]
+	[Export(PropertyHint.Range, "0,10,0.01,suffix:s,or_greater")]
 	public float SecondsBeforeRegeneration { get; set; } = 5.5f;
-	[Export(PropertyHint.Range, "0,10,,or_greater")]
-	public float RegenerationSpeed { get; set; } = 10.0f;
+	[Export(PropertyHint.Range, "0,10,0.01,or_greater")]
+	public float RegenerationSpeed         { get; set; } = 10.0f;
 
 	[ExportGroup("Damage Camera Effects")]
 	[ExportSubgroup("Camera Shake")]
-	[Export(PropertyHint.Range, "0,1,")]
+	[Export(PropertyHint.Range, "0,100,0.1,or_greater")]
 	public float RotationSpeed  { get; set; } = 9.0f;
-	[Export(PropertyHint.Range, "0,180,,degrees")]
+	[Export(PropertyHint.Range, "0,180,0.1,degrees")]
 	public float RotationDegree { get; set; } = 14.0f;
 	[ExportSubgroup("Visual Distortion")]
 	// Screen darkness controls how dark the screen will be, where 0.0 - natural
 	// color of the screen(unaltered) and 1.0 - black screen
-	[Export(PropertyHint.Range, "0.0,1.0,")]
-	public float ScreenDarknessMin { get; set; } = 0.0f;
-	[Export(PropertyHint.Range, "0.0,1.0,")]
-	public float ScreenDarknessMax { get; set; } = 0.3f;
-	[Export(PropertyHint.Range, "0.0,1.0,")]
+	[Export(PropertyHint.Range, "0.0,1.0,0.01")]
+	public float ScreenDarknessMin  { get; set; } = 0.0f;
+	[Export(PropertyHint.Range, "0.0,1.0,0.01")]
+	public float ScreenDarknessMax  { get; set; } = 0.3f;
+	[Export(PropertyHint.Range, "0.0,1.0,0.01")]
 	public float DistortionSpeedMin { get; set; } = 0.0f;
-	[Export(PropertyHint.Range, "0.0,1.0,")]
+	[Export(PropertyHint.Range, "0.0,1.0,0.01")]
 	public float DistortionSpeedMax { get; set; } = 0.6f;
-	[Export(PropertyHint.Range, "0.0,1.0,")]
-	public float DistortionSizeMin { get; set; } = 0.0f;
-	[Export(PropertyHint.Range, "0.0,1.0,")]
-	public float DistortionSizeMax { get; set; } = 1.0f;
+	[Export(PropertyHint.Range, "0.0,1.0,0.01")]
+	public float DistortionSizeMin  { get; set; } = 0.0f;
+	[Export(PropertyHint.Range, "0.0,1.0,0.01")]
+	public float DistortionSizeMax  { get; set; } = 1.0f;
 	[ExportSubgroup("Vignetting")]
-	// NOTE: These limits seem arbitrary, perhaps [0, 1] would be better?
-	[Export(PropertyHint.Range, "0.0,0.5,")]
-	public float ActiveZoneMultiplierMin { get; set; } = 0.45f;
-	[Export(PropertyHint.Range, "0.0,0.6,")]
-	// NOTE: what value should this default to? It is never set.
-	public float ActiveZoneMultiplierMax { get; set; } = 0.475f;
-	[Export(PropertyHint.Range, "0.0,1.0,,or_greater")]
+	[Export(PropertyHint.Range, "0.0,1.0,0.01")]
+	public float ActiveZoneMultiplierMin     { get; set; } = 0.45f;
+	[Export(PropertyHint.Range, "0.0,1.0,0.01")]
+	public float ActiveZoneMultiplierMax     { get; set; } = 0.475f;
+	[Export(PropertyHint.Range, "0.0,1.0,0.01,or_greater")]
 	public float MultiplierDeltaForAnimation { get; set; } = 0.066f;
-	[Export(PropertyHint.Range, "0.0,1.0,")]
-	public float Softness { get; set; } = 1.0f;
-	// NOTE: is this referring to animation speed??
-	[Export] public float SpeedMin { get; set; } = 2.95f;
-	[Export] public float SpeedMax { get; set; } = 4.0f;
+	[Export(PropertyHint.Range, "0.0,1.0,0.01")]
+	public float Softness                    { get; set; } = 1.0f;
+	[Export(PropertyHint.Range, "0.0,10,0.01")]
+	public float SpeedMin { get; set; } = 2.95f;
+	[Export(PropertyHint.Range, "0.0,10,0.01")]
+	public float SpeedMax { get; set; } = 4.0f;
 
 	// Death / GameOver
 	[ExportGroup("Death")]
 	[ExportSubgroup("Before Fade Out")]
-	[Export(PropertyHint.Range, "0.2,0.5,,or_less,or_greater")]
+	[Export(PropertyHint.Range, "0,1,0.01,or_less,or_greater")]
 	public float BlurLimitValueToStartFadeOut { get; set; } = 0.3f;
-	[Export(PropertyHint.Range, "0.0,4.0,,or_greater")]
-	public float BlurValueToStartFadeOut { get; set; } = 3.376f;
+	[Export(PropertyHint.Range, "0,1,0.01,or_greater")]
+	public float BlurValueToStartFadeOut      { get; set; } = 3.376f;
 	[ExportSubgroup("Speeds")]
-	[Export(PropertyHint.Range, "0.1,20.0,,or_greater")]
+	[Export(PropertyHint.Range, "0.1,20.0,0.1,or_greater")]
 	public float CameraDropSpeedOnDeath { get; set; } = 18.0f;
-	[Export(PropertyHint.Range, "0.05,5.0,,or_greater")]
-	public float FadeOutSpeed { get; set; } = 0.11f;
+	[Export(PropertyHint.Range, "0.01,5.0,0.01,or_greater")]
+	public float FadeOutSpeed           { get; set; } = 0.11f;
 
-	[Export(PropertyHint.Range, "0.1,10,,or_greater")]
+	[Export(PropertyHint.Range, "0.1,10,0.01,or_greater")]
 	public float BlurLimitSpeedOnDeath { get; set; } = 0.9f;
-	[Export(PropertyHint.Range, "0.1,10,,or_greater")]
-	public float BlurSpeedOnDeath { get; set; } = 1.5f;
+	[Export(PropertyHint.Range, "0.1,10,0.01,or_greater")]
+	public float BlurSpeedOnDeath      { get; set; } = 1.5f;
 
 	[ExportSubgroup("Target values")]
-	[Export(PropertyHint.Range, "0,5.0,,suffix:m,or_greater")]
+	[Export(PropertyHint.Range, "0,5.0,0.01,suffix:m,or_greater")]
 	public float CameraHeightOnDeath { get; set; } = 0.68f;
-	[Export(PropertyHint.Range, "0,5.0,,suffix:m,or_greater")]
-	public float FadeOutTargetValue { get; set; } = 4.0f;
+	[Export(PropertyHint.Range, "0,5.0,0.01,suffix:m,or_greater")]
+	public float FadeOutTargetValue  { get; set; } = 4.0f;
 
 	// TODO: add setter: BlurLimitValueToStartFadeOut should always be less than BlurLimitTargetValue
 	// (control it in editor)
-	[Export(PropertyHint.Range, "0,10,,or_greater")]
+	[Export(PropertyHint.Range, "0,10,0.01,or_greater")]
 	public float BlurLimitTargetValue { get; set; } = 0.5f;
 
 	// TODO: add setter: BlurValueToStartFadeOut should always be less than BlurTargetValue
 	// (control it in editor)
-	[Export(PropertyHint.Range, "0,10,,or_greater")]
+	[Export(PropertyHint.Range, "0,10,0.01,or_greater")]
 	public float BlurTargetValue { get; set; } = 7.0f;
 
 	[ExportSubgroup("Other")]
-	[Export(PropertyHint.Range, "0.0,4.0,,suffix:s,or_greater")]
+	[Export(PropertyHint.Range, "0.0,4.0,0.01,suffix:s,or_greater")]
 	public float ScreenDarknessToReloadScene { get; set; } = 1.74f;
 
 

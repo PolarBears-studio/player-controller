@@ -5,7 +5,7 @@ namespace PolarBears.PlayerControllerAddon;
 
 public partial class Mouse : Node3D
 {
-    [Export(PropertyHint.Range, "0,0.1,,or_greater")]
+    [Export(PropertyHint.Range, "0,0.1,0.001,or_greater")]
     public float Sensitivity { get; set; } = 0.004f;
     
     private Node3D _head;
@@ -40,7 +40,7 @@ public partial class Mouse : Node3D
             // Vertical movement of head
             Vector3 currentCameraRotation = _camera.Rotation;
             currentCameraRotation.X += Convert.ToSingle(-eventMouseMotion.Relative.Y * Sensitivity);
-            currentCameraRotation.X = Mathf.Clamp (currentCameraRotation.X, Mathf.DegToRad(-90), Mathf.DegToRad(90));
+            currentCameraRotation.X = Mathf.Clamp(currentCameraRotation.X, Mathf.DegToRad(-90f), Mathf.DegToRad(90f));
 
             _camera.Rotation = currentCameraRotation;				
         }

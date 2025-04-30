@@ -4,9 +4,9 @@ namespace PolarBears.PlayerControllerAddon;
 
 public partial class Bobbing: Node3D
 {
-    [Export(PropertyHint.Range, "0,10,,or_greater")]
+    [Export(PropertyHint.Range, "0,10,0.01,or_greater")]
     public float BobbingFrequency { set; get; } = 2.4f;
-    [Export(PropertyHint.Range, "0,0.4,,or_greater")]
+    [Export(PropertyHint.Range, "0,0.4,0.01,or_greater")]
     public float BobbingAmplitude { set; get; } = 0.08f;
     
     private Camera3D _camera;

@@ -15,10 +15,14 @@ public partial class PlayerController : CharacterBody3D
 	public HealthSystem    HealthSystem;
 	public Mouse           Mouse;
 
-	[Export] public float WalkSpeed             { get; set; } = 5.0f;
-	[Export] public float SprintSpeed           { get; set; } = 7.2f;
-	[Export] public float CrouchSpeed           { get; set; } = 2.5f;
-	[Export] public float CrouchTransitionSpeed { get; set; } = 20.0f;
+	[Export(PropertyHint.Range, "0,20,0.1,or_greater")]
+	public float WalkSpeed             { get; set; } = 5.0f;
+	[Export(PropertyHint.Range, "0,20,0.1,or_greater")]
+	public float SprintSpeed           { get; set; } = 7.2f;
+	[Export(PropertyHint.Range, "0,10,0.1,or_greater")]
+	public float CrouchSpeed           { get; set; } = 2.5f;
+	[Export(PropertyHint.Range, "0,100,0.1,or_greater")]
+	public float CrouchTransitionSpeed { get; set; } = 20.0f;
 
 	private float _currentSpeed;
 
