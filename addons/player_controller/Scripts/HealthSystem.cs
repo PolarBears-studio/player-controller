@@ -300,14 +300,14 @@ public partial class HealthSystem : Node3D
 		}
 		
 		float healthNormalized = CurrentHealth / MaxHealth;
-		float healthReverted = 1 - healthNormalized;
+		float healthReverted = 1.0f - healthNormalized;
 		
 		float newAnimationSpeed = Mathf.Lerp(SpeedMin, SpeedMax, healthReverted);
 		_currentSpeed = Mathf.Lerp(_currentSpeed, newAnimationSpeed, delta);
 		
 		float completeSinCycle = Mathf.Tau / _currentSpeed;
 
-		_timeAccumulator = Mathf.Wrap(_timeAccumulator + delta, 0.0f, Mathf.Tau);
+		_timeAccumulator = Mathf.Wrap(_timeAccumulator + delta, 0.0f, completeSinCycle);
 
 		float rawAnimationWeight = Mathf.Sin(_timeAccumulator * _currentSpeed);
 
@@ -330,10 +330,11 @@ public partial class HealthSystem : Node3D
 		_currentMultiplierMidValue = Mathf.Lerp(
 			_currentMultiplierMidValue, newMultiplierMidValue,  delta);
 			
-		float multiplier = Mathf.Lerp(_currentMultiplierMidValue + MultiplierDeltaForAnimation,
+		float multiplier = Mathf.Lerp(
 			_currentMultiplierMidValue - MultiplierDeltaForAnimation,
-			animationWeight * animationWeight);
-
+			_currentMultiplierMidValue + MultiplierDeltaForAnimation,
+			animationWeight * animationWeight
+		);
 		
 		_vignetteMaterial.SetShaderParameter(Constants.VIGNETTE_SHADER_MULTIPLIER, multiplier);
 		_vignetteMaterial.SetShaderParameter(Constants.VIGNETTE_SHADER_SOFTNESS, Softness);
