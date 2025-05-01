@@ -146,7 +146,7 @@ environment = SubResource("Environment_l208q")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0959, 1.80053, -2.41583)
 
 [node name="stairs" parent="." instance=ExtResource("7_1ct0v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0764, 0.480317, 18.961)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.066, 0.5, 19)
 
 [node name="Node3D" type="Node3D" parent="."]
 
