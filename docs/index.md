@@ -11,7 +11,7 @@ It comes complete with the following systems
 * Crouch jumps!
 
 ## Requirements
-C# 4.4 ect.
+C# 4.4
 
 ## Getting Started
-See the Tutorials page to get started using this Addon.
+See the Tutorials page to get started using this addon.
