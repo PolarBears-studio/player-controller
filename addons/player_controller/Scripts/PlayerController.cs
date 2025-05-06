@@ -15,6 +15,11 @@ public partial class PlayerController : CharacterBody3D
 	public HealthSystem    HealthSystem;
 	public Mouse           Mouse;
 
+	[Signal]
+	delegate void JumpedEventHandler();
+	[Signal]
+	delegate void HeadHitCeilingEventHandler();
+
 	[Export(PropertyHint.Range, "0,20,0.1,or_greater")]
 	public float WalkSpeed             { get; set; } = 5.0f;
 	[Export(PropertyHint.Range, "0,20,0.1,or_greater")]
@@ -33,6 +38,8 @@ public partial class PlayerController : CharacterBody3D
 
 	private const int NumOfHeadCollisionDetectors = 4;
 	private RayCast3D[] _headCollisionDetectors;
+
+	private bool _wasHeadPreviouslyTouchingCeiling = false;
 
 	public override void _Ready()
 	{
@@ -138,8 +145,9 @@ public partial class PlayerController : CharacterBody3D
 				x: Velocity.X,
 				y: Gravity.CalculateJumpForce() * (float)delta,
 				z: Velocity.Z);
+			EmitSignal(SignalName.Jumped);
 		}
-		
+
 		bool isHeadTouchingCeiling = IsHeadTouchingCeiling();
 		bool doesCapsuleHaveDefaultHeight = CapsuleCollider.IsDefaultHeight();
 
@@ -151,7 +159,11 @@ public partial class PlayerController : CharacterBody3D
 				x: Velocity.X,
 				y: Velocity.Y - 2.0f,
 				z: Velocity.Z);
+			if (!_wasHeadPreviouslyTouchingCeiling)
+				EmitSignal(SignalName.HeadHitCeiling);
 		}
+
+		_wasHeadPreviouslyTouchingCeiling = isHeadTouchingCeiling;
 
 		if (!isPlayerDead)
 		{
@@ -173,7 +185,7 @@ public partial class PlayerController : CharacterBody3D
 		}
 
 		// Each component of the boolean statement for sprinting is required
-		if (Input.IsActionPressed("sprint") && !isHeadTouchingCeiling && 
+		if (Input.IsActionPressed("sprint") && !isHeadTouchingCeiling &&
 		    !doesCapsuleHaveCrouchingHeight && !isPlayerDead)
 		{
 			_currentSpeed = SprintSpeed;
