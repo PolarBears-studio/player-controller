@@ -1,17 +1,17 @@
-# Welcome to MkDocs
+# PlayerControllerAddon
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+A full-featured first-person player movement and health system that you can easily incorporate into your game and configure to your needs. 
 
-## Commands
+It comes complete with the following systems
+* Health, damage, and death complete with shader effects.
+* Jumping
+* Crouching
+* Climbing stair shaped geometry
+* Sprinting complete with FOV pull effect
+* Crouch jumps!
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+## Requirements
+C# 4.4
 
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+## Getting Started
+See the Tutorials page to get started using this addon.
