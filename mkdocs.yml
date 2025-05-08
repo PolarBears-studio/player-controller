@@ -1,4 +1,9 @@
-site_name: My site
+site_name: Player controller docs
+site_url: https://polarbears-studio.github.io/player-controller/
+site_author: Polar Bears Studio
+repo_name: PolarBears-studio/player-controller
+repo_url: https://github.com/PolarBears-studio/player-controller
+
 theme:
   name: material
   features:
