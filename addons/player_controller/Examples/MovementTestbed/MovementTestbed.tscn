@@ -66,42 +66,31 @@ size = Vector3(78, 5, 1)
 material = ExtResource("2_r1h7x")
 
 [node name="Box0_5Meters" type="CSGBox3D" parent="Map"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12, 0.75, 2)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11, 0.75, -2.5)
 use_collision = true
 size = Vector3(4, 0.5, 4)
 material = ExtResource("3_srqdk")
 
 [node name="Box1Meter" type="CSGBox3D" parent="Map"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12, 1, -4)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11, 1, -8.5)
 use_collision = true
 size = Vector3(4, 1, 4)
 material = ExtResource("3_srqdk")
 
 [node name="Box2Meters" type="CSGBox3D" parent="Map"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12, 1.5, -13)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11, 1.5, -17.5)
 use_collision = true
 size = Vector3(10, 2, 4)
 material = ExtResource("3_srqdk")
 
 [node name="Box2_5Meters" type="CSGBox3D" parent="Map"]
-transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 7, 1.75, -16)
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 6, 1.75, -20.5)
 use_collision = true
 size = Vector3(4, 2.5, 4)
 material = ExtResource("3_srqdk")
 
-[node name="TunnelLow" type="CSGBox3D" parent="Map"]
-transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 1.75, -13)
-use_collision = true
-size = Vector3(4, 2.5, 10)
-material = ExtResource("3_srqdk")
-
-[node name="BoxSlicer" type="CSGBox3D" parent="Map/TunnelLow"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.654007, 0)
-operation = 2
-size = Vector3(1, 1.2, 10)
-
 [node name="TunnelMedium" type="CSGBox3D" parent="Map"]
-transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -6, 1.75, -13)
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.5, 1.75, -17.5)
 use_collision = true
 size = Vector3(4, 2.5, 10)
 material = ExtResource("3_srqdk")
@@ -112,7 +101,7 @@ operation = 2
 size = Vector3(2, 1.7, 10)
 
 [node name="TunnelHigh" type="CSGBox3D" parent="Map"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 2.5, -11)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 2.5, -15.5)
 use_collision = true
 size = Vector3(5, 4, 15)
 material = ExtResource("3_srqdk")
@@ -140,7 +129,7 @@ size = Vector3(4, 8, 4)
 material = ExtResource("3_srqdk")
 
 [node name="Box1_5Meters" type="CSGBox3D" parent="Map"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 18, 1.27006, 2)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 17, 1.27006, -2.5)
 use_collision = true
 size = Vector3(4, 1.5, 4)
 material = ExtResource("3_srqdk")
@@ -153,6 +142,33 @@ environment = SubResource("Environment_l208q")
 
 [node name="Player" parent="." instance=ExtResource("4_mphxi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0959, 1.80053, -2.41583)
+
+[node name="MeshInstance3D" parent="Player" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -4.5)
+
+[node name="CapsuleCollider" parent="Player" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -4.5)
+
+[node name="Camera3D" parent="Player/Head/CameraSmooth" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -4.5)
+
+[node name="StairsAheadRayCast3D" parent="Player" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, -5.328)
+
+[node name="StairsBelowRayCast3D" parent="Player" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -4.5)
+
+[node name="HeadCollisionDetector0" parent="Player/HeadCollisionDetectors" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.4, -4.71071)
+
+[node name="HeadCollisionDetector1" parent="Player/HeadCollisionDetectors" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.4, -4.26939)
+
+[node name="HeadCollisionDetector2" parent="Player/HeadCollisionDetectors" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.296, 1.4, -4.5)
+
+[node name="HeadCollisionDetector3" parent="Player/HeadCollisionDetectors" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.704, 1.4, -4.5)
 
 [node name="stairs" parent="." instance=ExtResource("7_1ct0v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.066, 0.5, 19)
