@@ -20,7 +20,7 @@ sky_material = SubResource("ProceduralSkyMaterial_awgfw")
 
 [sub_resource type="Environment" id="Environment_l208q"]
 background_mode = 2
-background_energy_multiplier = 0.8
+background_energy_multiplier = 1.4
 sky = SubResource("Sky_j2rwf")
 ambient_light_color = Color(0.838897, 0.838897, 0.838897, 1)
 
@@ -33,12 +33,20 @@ radius = 9.395
 
 [node name="World" type="Node3D"]
 
-[node name="Map" type="Node3D" parent="."]
+[node name="Map" type="CSGCombiner3D" parent="."]
+use_collision = true
 
 [node name="Floor" type="CSGBox3D" parent="Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9)
 use_collision = true
 size = Vector3(55, 1, 82)
+material = ExtResource("1_kf2sy")
+
+[node name="HillsFloorSlicer" type="CSGBox3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 36)
+operation = 2
+use_collision = true
+size = Vector3(42, 2.5, 14)
 material = ExtResource("1_kf2sy")
 
 [node name="WallForward" type="CSGBox3D" parent="Map"]
@@ -89,13 +97,13 @@ use_collision = true
 size = Vector3(4, 2.5, 4)
 material = ExtResource("3_srqdk")
 
-[node name="TunnelMedium" type="CSGBox3D" parent="Map"]
+[node name="TunnelLow" type="CSGBox3D" parent="Map"]
 transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.5, 1.75, -17.5)
 use_collision = true
 size = Vector3(4, 2.5, 10)
 material = ExtResource("3_srqdk")
 
-[node name="BoxSlicer" type="CSGBox3D" parent="Map/TunnelMedium"]
+[node name="BoxSlicer" type="CSGBox3D" parent="Map/TunnelLow"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
 operation = 2
 size = Vector3(2, 1.7, 10)
@@ -135,60 +143,31 @@ size = Vector3(4, 1.5, 4)
 material = ExtResource("3_srqdk")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.363528, 0.931583, 0, -0.931583, 0.363528, 0, 36.0983, 22.6606)
+transform = Transform3D(0.866025, 0.402876, -0.296126, 0, 0.592253, 0.805752, 0.5, -0.697802, 0.512906, 0, 36.0983, 22.6606)
+shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_l208q")
 
 [node name="Player" parent="." instance=ExtResource("4_mphxi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0959, 1.80053, -2.41583)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1, 0)
 
-[node name="MeshInstance3D" parent="Player" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -4.5)
-
-[node name="CapsuleCollider" parent="Player" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -4.5)
-
-[node name="Camera3D" parent="Player/Head/CameraSmooth" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -4.5)
-
-[node name="StairsAheadRayCast3D" parent="Player" index="5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, -5.328)
-
-[node name="StairsBelowRayCast3D" parent="Player" index="6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -4.5)
-
-[node name="HeadCollisionDetector0" parent="Player/HeadCollisionDetectors" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.4, -4.71071)
-
-[node name="HeadCollisionDetector1" parent="Player/HeadCollisionDetectors" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.4, -4.26939)
-
-[node name="HeadCollisionDetector2" parent="Player/HeadCollisionDetectors" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.296, 1.4, -4.5)
-
-[node name="HeadCollisionDetector3" parent="Player/HeadCollisionDetectors" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.704, 1.4, -4.5)
-
-[node name="stairs" parent="." instance=ExtResource("7_1ct0v")]
+[node name="Stairs" parent="." instance=ExtResource("7_1ct0v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.066, 0.5, 19)
 
-[node name="Node3D" type="Node3D" parent="."]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.2252, 0.523411, 29.0874)
+[node name="Hills" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5, 0.5, 29)
 mesh = ExtResource("6_1eupo")
+skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Node3D/MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Hills"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hills/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_rwt1y")
 
-[node name="LowGravityDome" type="Area3D" parent="."]
+[node name="LowGravityRegion" type="Area3D" parent="."]
 script = ExtResource("7_qmg6d")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LowGravityDome"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LowGravityRegion"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.9774, 0, 6.10726)
 shape = SubResource("CylinderShape3D_otasa")
-
-[editable path="Player"]
