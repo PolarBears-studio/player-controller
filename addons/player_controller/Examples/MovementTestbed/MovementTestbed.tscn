@@ -20,7 +20,6 @@ sky_material = SubResource("ProceduralSkyMaterial_awgfw")
 
 [sub_resource type="Environment" id="Environment_l208q"]
 background_mode = 2
-background_energy_multiplier = 0.8
 sky = SubResource("Sky_j2rwf")
 ambient_light_color = Color(0.838897, 0.838897, 0.838897, 1)
 
@@ -33,12 +32,20 @@ radius = 9.395
 
 [node name="World" type="Node3D"]
 
-[node name="Map" type="Node3D" parent="."]
+[node name="Map" type="CSGCombiner3D" parent="."]
+use_collision = true
 
 [node name="Floor" type="CSGBox3D" parent="Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9)
 use_collision = true
 size = Vector3(55, 1, 82)
+material = ExtResource("1_kf2sy")
+
+[node name="HillsFloorSlicer" type="CSGBox3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 36)
+operation = 2
+use_collision = true
+size = Vector3(42, 2.5, 14)
 material = ExtResource("1_kf2sy")
 
 [node name="WallForward" type="CSGBox3D" parent="Map"]
@@ -66,53 +73,42 @@ size = Vector3(78, 5, 1)
 material = ExtResource("2_r1h7x")
 
 [node name="Box0_5Meters" type="CSGBox3D" parent="Map"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12, 0.75, 2)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11, 0.75, -2.5)
 use_collision = true
 size = Vector3(4, 0.5, 4)
 material = ExtResource("3_srqdk")
 
 [node name="Box1Meter" type="CSGBox3D" parent="Map"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12, 1, -4)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11, 1, -8.5)
 use_collision = true
 size = Vector3(4, 1, 4)
 material = ExtResource("3_srqdk")
 
 [node name="Box2Meters" type="CSGBox3D" parent="Map"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12, 1.5, -13)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11, 1.5, -17.5)
 use_collision = true
 size = Vector3(10, 2, 4)
 material = ExtResource("3_srqdk")
 
 [node name="Box2_5Meters" type="CSGBox3D" parent="Map"]
-transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 7, 1.75, -16)
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 6, 1.75, -20.5)
 use_collision = true
 size = Vector3(4, 2.5, 4)
 material = ExtResource("3_srqdk")
 
 [node name="TunnelLow" type="CSGBox3D" parent="Map"]
-transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 1.75, -13)
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.5, 1.75, -17.5)
 use_collision = true
 size = Vector3(4, 2.5, 10)
 material = ExtResource("3_srqdk")
 
 [node name="BoxSlicer" type="CSGBox3D" parent="Map/TunnelLow"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.654007, 0)
-operation = 2
-size = Vector3(1, 1.2, 10)
-
-[node name="TunnelMedium" type="CSGBox3D" parent="Map"]
-transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -6, 1.75, -13)
-use_collision = true
-size = Vector3(4, 2.5, 10)
-material = ExtResource("3_srqdk")
-
-[node name="BoxSlicer" type="CSGBox3D" parent="Map/TunnelMedium"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
 operation = 2
 size = Vector3(2, 1.7, 10)
 
 [node name="TunnelHigh" type="CSGBox3D" parent="Map"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 2.5, -11)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 2.5, -15.5)
 use_collision = true
 size = Vector3(5, 4, 15)
 material = ExtResource("3_srqdk")
@@ -140,39 +136,37 @@ size = Vector3(4, 8, 4)
 material = ExtResource("3_srqdk")
 
 [node name="Box1_5Meters" type="CSGBox3D" parent="Map"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 18, 1.27006, 2)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 17, 1.27006, -2.5)
 use_collision = true
 size = Vector3(4, 1.5, 4)
 material = ExtResource("3_srqdk")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.363528, 0.931583, 0, -0.931583, 0.363528, 0, 36.0983, 22.6606)
+transform = Transform3D(0.866025, 0.402876, -0.296126, 0, 0.592253, 0.805752, 0.5, -0.697802, 0.512906, 0, 36.0983, 22.6606)
+shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_l208q")
 
 [node name="Player" parent="." instance=ExtResource("4_mphxi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0959, 1.80053, -2.41583)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1, 0)
 
-[node name="stairs" parent="." instance=ExtResource("7_1ct0v")]
+[node name="Stairs" parent="." instance=ExtResource("7_1ct0v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.066, 0.5, 19)
 
-[node name="Node3D" type="Node3D" parent="."]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.2252, 0.523411, 29.0874)
+[node name="Hills" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5, 0.5, 29)
 mesh = ExtResource("6_1eupo")
+skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Node3D/MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Hills"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hills/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_rwt1y")
 
-[node name="LowGravityDome" type="Area3D" parent="."]
+[node name="LowGravityRegion" type="Area3D" parent="."]
 script = ExtResource("7_qmg6d")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LowGravityDome"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LowGravityRegion"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.9774, 0, 6.10726)
 shape = SubResource("CylinderShape3D_otasa")
-
-[editable path="Player"]
