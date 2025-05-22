@@ -57,11 +57,6 @@ public partial class PlayerController : CharacterBody3D
 
 	private bool _wasHeadPreviouslyTouchingCeiling = false;
 
-	// This supports the function IsPhysicalKeyJustPressed emulating the behavior
-	// of IsActionJustPressed by only catching the first press of a key, but not
-	// the hold of the key.
-	private Godot.Collections.Dictionary<Key, bool> _keyHeld;
-
 	public override void _Ready()
 	{
 		_currentSpeed = WalkSpeed;
@@ -346,18 +341,6 @@ public partial class PlayerController : CharacterBody3D
         StairsSystem.SlideCameraSmoothBackToOrigin(slideCameraParams);
     }
 
-    public override void _UnhandledInput(InputEvent inputEvent)
-    {
-    	if (inputEvent is InputEventKey keyEvent)
-    	{
-    		Key key = keyEvent.Keycode;
-    		if (_keyHeld.ContainsKey(key) && !keyEvent.Pressed)
-    		{
-    			_keyHeld[key] = false;
-    		}
-    	}
-    }
-
 	private bool IsHeadTouchingCeiling()
 	{
 		for (int i = 0; i < NumOfHeadCollisionDetectors; i++)
@@ -376,35 +359,12 @@ public partial class PlayerController : CharacterBody3D
         return IsOnFloor() || StairsSystem.WasSnappedToStairsLastFrame();
     }
 
-	private bool IsPhysicalKeyJustPressed(Key key)
-	{
-		if (_keyHeld.ContainsKey(key) && _keyHeld[key])
-		{
-			return false;
-		}
-		else
-		{
-			bool justPressed = Input.IsPhysicalKeyPressed(key);
-			_keyHeld[key] = justPressed;
-			return justPressed;
-		}
-	}
-
 	private bool IsInputPressed(string inputAction, Key fallbackKey)
 	{
 		bool inputActionSet = !string.IsNullOrEmpty(inputAction);
 		return (
 			inputActionSet && Input.IsActionPressed(inputAction) ||
 			!inputActionSet && Input.IsPhysicalKeyPressed(fallbackKey)
-		);
-	}
-
-	private bool IsInputJustPressed(string inputAction, Key fallbackKey)
-	{
-		bool inputActionSet = !string.IsNullOrEmpty(inputAction);
-		return (
-			inputActionSet && Input.IsActionJustPressed(inputAction) ||
-			!inputActionSet && IsPhysicalKeyJustPressed(fallbackKey)
 		);
 	}
 
