@@ -29,6 +29,22 @@ public partial class PlayerController : CharacterBody3D
 	[Export(PropertyHint.Range, "0,100,0.1,or_greater")]
 	public float CrouchTransitionSpeed { get; set; } = 20.0f;
 
+	[ExportGroup("Input")]
+	[Export]
+	public string MoveForwardInputAction;
+	[Export]
+	public string MoveBackwardInputAction;
+	[Export]
+	public string StrafeLeftInputAction;
+	[Export]
+	public string StrafeRightInputAction;
+	[Export]
+	public string JumpInputAction;
+	[Export]
+	public string CrouchInputAction;
+	[Export]
+	public string SprintInputAction;
+
 	private float _currentSpeed;
 
 	private const float DecelerationSpeedFactorFloor = 15.0f;
@@ -138,8 +154,8 @@ public partial class PlayerController : CharacterBody3D
 		bool isPlayerDead = HealthSystem.IsDead();
 
 		// Handle Jumping
-		if (Input.IsActionJustPressed("jump") && isOnFloorCustom() 
-				&& !doesCapsuleHaveCrouchingHeight && !isPlayerDead)
+		if (IsInputPressed(JumpInputAction, Key.Space) && isOnFloorCustom()
+			&& !doesCapsuleHaveCrouchingHeight && !isPlayerDead)
 		{
 			Velocity = new Vector3(
 				x: Velocity.X,
@@ -170,7 +186,7 @@ public partial class PlayerController : CharacterBody3D
 			
 			// Used both for detecting the moment when we enter into crouching mode and the moment when we're already
 			// in the crouching mode
-			if (Input.IsActionPressed("crouch") ||
+			if (IsInputPressed(CrouchInputAction, Key.Ctrl) ||
 			    (doesCapsuleHaveCrouchingHeight && isHeadTouchingCeiling))
 			{
 				CapsuleCollider.Crouch((float)delta, CrouchTransitionSpeed);
@@ -185,14 +201,14 @@ public partial class PlayerController : CharacterBody3D
 		}
 
 		// Each component of the boolean statement for sprinting is required
-		if (Input.IsActionPressed("sprint") && !isHeadTouchingCeiling &&
+		if (IsInputPressed(SprintInputAction, Key.Shift) && !isHeadTouchingCeiling &&
 		    !doesCapsuleHaveCrouchingHeight && !isPlayerDead)
 		{
 			_currentSpeed = SprintSpeed;
 		}
 
 		// Get the input direction
-		Vector2 inputDir = Input.GetVector("left", "right", "up", "down");
+		Vector2 inputDir = GetMovementVector();
 
 		// Basis is a 3x4 matrix. It contains information about scaling and rotation of head.
 		// By multiplying our Vector3 by this matrix we're doing multiple things:
@@ -342,4 +358,32 @@ public partial class PlayerController : CharacterBody3D
     {
         return IsOnFloor() || StairsSystem.WasSnappedToStairsLastFrame();
     }
+
+	private bool IsInputPressed(string inputAction, Key fallbackKey)
+	{
+		bool inputActionSet = !string.IsNullOrEmpty(inputAction);
+		return (
+			inputActionSet && Input.IsActionPressed(inputAction) ||
+			!inputActionSet && Input.IsPhysicalKeyPressed(fallbackKey)
+		);
+	}
+
+	private float GetInputStrength(string inputAction, Key fallbackKey)
+	{
+		if (string.IsNullOrEmpty(inputAction))
+		{
+			return Input.IsPhysicalKeyPressed(fallbackKey) ? 1.0f : 0.0f;
+		}
+		else
+		{
+			return Input.GetActionStrength(inputAction);
+		}
+	}
+
+	private Vector2 GetMovementVector() {
+		return new Vector2(
+			GetInputStrength(StrafeRightInputAction, Key.D) - GetInputStrength(StrafeLeftInputAction, Key.A),
+			GetInputStrength(MoveBackwardInputAction, Key.S) - GetInputStrength(MoveForwardInputAction, Key.W)
+		);
+	}
 }
