@@ -1,4 +1,5 @@
-# FPS Player Controller [C#]
+<h1 align="center">
+  🎮 Godot's FPS Player Controller [C#]</h1> <p align="center"> <em>
 
 <p align="center"> <img src="/media/player-controller-logo.png" alt="Player Controller Logo" width="550"/> </p> <h1 align="center">
   🎮 Description</h1> <p align="center"> <em>
@@ -22,3 +23,12 @@ Just drag, drop, and you're ready to go FPS-style! This first-person character c
 Perfect for FPS games, exploration projects, or rapid prototyping.  
 
 Read the docs [in here](https://polarbears-studio.github.io/player-controller/ )
+
+<h1 align="center">
+  🎮 Screenshots & Video </h1> <p align="center"> <em>
+
+  <p align="center"> <img src="/media/player-controller-scene.png" alt="Player Controller Logo" width="550"/> </p>
+    
+<p align="center"> <img src="/media/demo-death.png" alt="Player Controller Logo" width="550"/> </p>
+
+<p align="center"> <a href="https://youtu.be/JhfxxH4JjJk" target="_blank"> <img src="https://img.youtube.com/vi/JhfxxH4JjJk/maxresdefault.jpg" alt="Player Controller Showcase" width="600"/> </a> </p> <p align="center"> <a href="https://youtu.be/JhfxxH4JjJk" target="_blank"><strong>▶ Watch the Player Controller in Action</strong></a> </p>
