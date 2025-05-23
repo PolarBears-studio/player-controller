@@ -1,8 +1,8 @@
 [gd_scene load_steps=21 format=3 uid="uid://bei4nhkf8lwdo"]
 
 [ext_resource type="Script" uid="uid://bbbrf5ckydfna" path="res://addons/player_controller/Scripts/PlayerController.cs" id="1_poq2x"]
-[ext_resource type="Material" uid="uid://dtq8i1ka1f2pn" path="res://addons/player_controller/Assets/Materials/Health/CameraVignette.tres" id="2_6hee7"]
-[ext_resource type="Material" uid="uid://nyh5tn1yoxeu" path="res://addons/player_controller/Assets/Materials/Health/CameraDistortion.tres" id="3_mxh1y"]
+[ext_resource type="Material" uid="uid://dtq8i1ka1f2pn" path="res://addons/player_controller/Shaders/CameraVignette.tres" id="2_6hee7"]
+[ext_resource type="Material" uid="uid://nyh5tn1yoxeu" path="res://addons/player_controller/Shaders/CameraDistortion.tres" id="3_mxh1y"]
 [ext_resource type="Shader" uid="uid://btw6vsb6sa7sn" path="res://addons/player_controller/Shaders/Blur.gdshader" id="4_jyscr"]
 [ext_resource type="Script" uid="uid://dv7v1ywmbvvcd" path="res://addons/player_controller/Scripts/HealthSystem.cs" id="5_umw0l"]
 [ext_resource type="Script" uid="uid://vuq8rjq3vegn" path="res://addons/player_controller/Scripts/Stamina.cs" id="6_lxtc4"]
