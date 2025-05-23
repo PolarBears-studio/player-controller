@@ -39,5 +39,6 @@ Read the docs [in here](https://polarbears-studio.github.io/player-controller/ )
 <h1 align="center">
   🎮 Other links </h1> <p align="center"> <em>
 
-Join our [discord server](https://discord.com/channels/1165743149621182605/1368527596907790347) when you have questions about the player controller
+* [Asset libary link for the addon](https://godotengine.org/asset-library/asset/4020)
+* Join our [discord server](https://discord.com/channels/1165743149621182605/1368527596907790347) when you have questions about the player controller
 
