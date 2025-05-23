@@ -22,7 +22,7 @@ Just drag, drop, and you're ready to go FPS-style! This first-person character c
 👨‍💻 Built by devs, for devs — clean, extendable, and battle-tested. Just drop it into your scene and go! 🛠️
 Perfect for FPS games, exploration projects, or rapid prototyping.  
 
-Read the docs [in here](https://polarbears-studio.github.io/player-controller/ )
+Read the docs <a href="https://polarbears-studio.github.io/player-controller/" target="_blank" rel="noopener noreferrer">in here</a> (new tab will be opened)
 
 <h1 align="center">
   🎮 Screenshots & Video </h1> <p align="center"> <em>
