@@ -21,12 +21,12 @@ vec4 lerp(vec4 a, vec4 b, float t){
 
 // Function to remap a value from one range to another
 float remap(float value, float old_min, float old_max, float new_min, float new_max) {
-    return new_min + (value - old_min) * (new_max - new_min) / (old_max - old_min);
+	return new_min + (value - old_min) * (new_max - new_min) / (old_max - old_min);
 }
 
 void fragment(){
 	vec2 smoke_uv = UV;
-    smoke_uv += uv_offset;
+	smoke_uv += uv_offset;
 	
 	vec4 smoke_color = texture(smoke, fract(smoke_uv));
 	
