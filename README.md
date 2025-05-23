@@ -35,3 +35,9 @@ Read the docs [in here](https://polarbears-studio.github.io/player-controller/ )
 <p align="center">  <img src="https://img.youtube.com/vi/JhfxxH4JjJk/maxresdefault.jpg" alt="Player Controller Showcase" width="550"/></p> <p align="center"> 
   
 </p> <p align="center"> <a href="https://youtu.be/JhfxxH4JjJk" target="_blank"><strong>▶ Watch the Player Controller in Action</strong></a> </p>
+
+<h1 align="center">
+  🎮 Other links </h1> <p align="center"> <em>
+
+Join our [discord server](https://discord.com/channels/1165743149621182605/1368527596907790347) when you have questions about the player controller
+
