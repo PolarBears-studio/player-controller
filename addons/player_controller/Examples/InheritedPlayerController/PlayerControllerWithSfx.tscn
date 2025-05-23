@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://cpgel1kkg7hy7"]
 
 [ext_resource type="PackedScene" uid="uid://bei4nhkf8lwdo" path="res://addons/player_controller/PlayerController.tscn" id="1_noe0t"]
-[ext_resource type="AudioStream" uid="uid://b6wrvgtlava56" path="res://addons/player_controller/Assets/SFX/jump.wav" id="2_06cs1"]
-[ext_resource type="AudioStream" uid="uid://bb8wonh3q1wpo" path="res://addons/player_controller/Assets/SFX/head-hit-ceiling.wav" id="3_06cs1"]
-[ext_resource type="AudioStream" uid="uid://cpjk8ubqwl1ko" path="res://addons/player_controller/Assets/SFX/damaged.wav" id="4_d661p"]
-[ext_resource type="AudioStream" uid="uid://cbmkap6ye6chm" path="res://addons/player_controller/Assets/SFX/death.wav" id="5_no2wo"]
+[ext_resource type="AudioStream" uid="uid://b6wrvgtlava56" path="res://addons/player_controller/Examples/Assets/SFX/Jump.wav" id="2_06cs1"]
+[ext_resource type="AudioStream" uid="uid://bb8wonh3q1wpo" path="res://addons/player_controller/Examples/Assets/SFX/HeadHit.wav" id="3_06cs1"]
+[ext_resource type="AudioStream" uid="uid://cpjk8ubqwl1ko" path="res://addons/player_controller/Examples/Assets/SFX/Damaged.wav" id="4_d661p"]
+[ext_resource type="AudioStream" uid="uid://cbmkap6ye6chm" path="res://addons/player_controller/Examples/Assets/SFX/Death.wav" id="5_no2wo"]
 [ext_resource type="Script" uid="uid://baepdv65jebio" path="res://addons/player_controller/Examples/InheritedPlayerController/DamagedSfx.cs" id="5_w821p"]
-[ext_resource type="AudioStream" uid="uid://drn63gjgpnowm" path="res://addons/player_controller/Assets/SFX/health-recovered.wav" id="6_w821p"]
+[ext_resource type="AudioStream" uid="uid://drn63gjgpnowm" path="res://addons/player_controller/Examples/Assets/SFX/HealthRecovered.wav" id="6_w821p"]
 
 [node name="Player" instance=ExtResource("1_noe0t")]
 
