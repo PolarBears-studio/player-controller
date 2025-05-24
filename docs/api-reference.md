@@ -9,10 +9,35 @@ This is the root script of the scene and therefore manages all of its childs' op
 
 | Export Name | Description |
 | :--                      | :--         |
-| Walk Speed               | The speed in meters per second the player can walk at. |
+| Walk Speed               | The speed in meters per second the player can walk at |
 | Sprint Speed             | The speed in meters per second the player can sprint at (hold shift) |
 | Crouch Speed             | The speed in meters per second the player can move at while crouched (hold ctrl) |
 | Crouch Transition Speed  | The speed in meters per second at which the player can transition from standing to crouching and vice verse |
+
+The Player node also implements signals developers can trigger their own scripted events off of.
+
+| Signal Name | Description |
+| :--     | :-- |
+| Jumped  | This emits from the Player node at the start of a player's jump |
+| HeadHit | This emits whenever the player's head collides with a surface |
+
+
+
+### Input
+
+The Player node is meant to be drag-and-drop, so by default typically WASD keyboard and mouse input is hard-coded into the PlayerController script. However, a user can easily override some or all of these inputs by setting the values in the **Input** section of the Player inspector to input action names present in the user's project. Controller buttons can even been supported via this method. For more details on how to implement input actions into your project, refer to the [Godot documention on InputMap](https://docs.godotengine.org/en/stable/tutorials/inputs/input_examples.html#inputmap). The following is a table of actions supported by Player and their corresponding input action override value.
+
+| Action        | Key | Override Export String |
+| :--           | :-- | :-- |
+| Move Foward   | W   | Move Forward Input Action |
+| Move Backward | S   | Move Backward Input Action |
+| Strafe Left   | A   | Strafe Left Input Action |
+| Strafe Right  | D   | Strafe Right Input Action |
+| Jump          | Space bar | Jump Input Action |
+| Crouch        | Ctrl | Crouch Input Action |
+| Sprint        | Shift | Sprint Input Action |
+
+Since the look control is handled by a different script, refer to the [Mouse section](api-reference.md#Mouse) later in this document to learn how to switch mouse look to right analog look and adjust the sensitivity for both.
 
 ## CapsuleCollider
 
