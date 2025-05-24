@@ -9,25 +9,25 @@ This is the root script of the scene and therefore manages all of its childs' op
 
 | Export Name | Description |
 | :--                      | :--         |
-| Walk Speed               | The speed in meters per second the player can walk at |
-| Sprint Speed             | The speed in meters per second the player can sprint at (hold shift) |
-| Crouch Speed             | The speed in meters per second the player can move at while crouched (hold ctrl) |
-| Crouch Transition Speed  | The speed in meters per second at which the player can transition from standing to crouching and vice verse |
+| Walk Speed               | The speed in meters per second the player can walk at. |
+| Sprint Speed             | The speed in meters per second the player can sprint at. |
+| Crouch Speed             | The speed in meters per second the player can move at while crouched. |
+| Crouch Transition Speed  | The speed in meters per second at which the player can transition from standing to crouching and vice verse. |
 
 The Player node also implements signals developers can trigger their own scripted events off of.
 
 | Signal Name | Description |
 | :--     | :-- |
-| Jumped  | This emits from the Player node at the start of a player's jump |
-| HeadHit | This emits whenever the player's head collides with a surface |
+| Jumped  | This emits from the Player node at the start of a player's jump. |
+| HeadHit | This emits whenever the player's head collides with a surface. |
 
 Refer to the [Tutorial 3.1](tutorial-3.md#tutorial-31-utilizing-playercontroller-signal-api) for instructions on utilizing Player signals.
 
 ### Input
 
-The Player node is meant to be drag-and-drop, so by default typically WASD keyboard and mouse input is hard-coded into the PlayerController script. However, a user can easily override some or all of these inputs by setting the values in the **Input** section of the Player inspector to input action names present in the user's project. Controller buttons can even been supported via this method. For more details on how to implement input actions into your project, refer to the [Godot documention on InputMap](https://docs.godotengine.org/en/stable/tutorials/inputs/input_examples.html#inputmap). The following is a table of actions supported by Player and their corresponding input action override value.
+The Player node is meant to be as simple as drag-and-drop, so by default typical WASD keyboard and mouse input is hard-coded into the PlayerController script. However, a user can easily override some or all of these inputs by setting the values in the **Input** section of the Player inspector to input action names present in the user's project. Controller buttons can even been supported via this method. For more details on how to implement input actions into your project, refer to the [Godot documentation on InputMap](https://docs.godotengine.org/en/stable/tutorials/inputs/input_examples.html#inputmap). The following is a table of actions supported by Player and their corresponding input action override value.
 
-| Action        | Key | Override Export String |
+| Action        | Default Key | Override Export String |
 | :--           | :-- | :-- |
 | Move Foward   | W   | Move Forward Input Action |
 | Move Backward | S   | Move Backward Input Action |
@@ -37,7 +37,7 @@ The Player node is meant to be drag-and-drop, so by default typically WASD keybo
 | Crouch        | Ctrl | Crouch Input Action |
 | Sprint        | Shift | Sprint Input Action |
 
-Since the look control is handled by a different script, refer to the [Mouse section](api-reference.md#Mouse) later in this document to learn how to switch mouse look to right analog look and adjust the sensitivity for both.
+Since the look control is handled by a different script, refer to the [Mouse section](api-reference.md##Mouse) later in this document to learn how to switch mouse look to gamepad right analog look and adjust the sensitivity for both.
 
 ## CapsuleCollider
 
@@ -50,7 +50,7 @@ This script is responsible for managing the height of the collision capsule. It 
 
 ## HealthSystem
 
-This script is responsible for managing the player's health and rendering both the damage and death effects. It inherits from [Node3D](https://docs.godotengine.org/en/latest/classes/class_node3d.html).
+This script is responsible for managing the player's health and rendering both the damage and death effects.
 
 This node also supports signals a developer can trigger their own code off of.
 
@@ -62,6 +62,9 @@ This node also supports signals a developer can trigger their own code off of.
 
 Refer to the [Tutorial 3.1](tutorial-3.md#tutorial-31-utilizing-playercontroller-signal-api) for instructions on utilizing Player signals.
 
+!!! info "Damage Debug Tool"
+    When running a debug build of the game, the **H** key can be pressed to damage the player to test out the health system. 
+
 ### Health Metrics
 
 This inspector section contains all properties relating to health values and their regeneration.
@@ -70,7 +73,7 @@ This inspector section contains all properties relating to health values and the
 
 | Export Name | Description |
 | :--                      | :--         |
-| Max Health               | Maximum health of the player. Current Health will never go above this value. |
+| Max Health               | Maximum health of the player. **Current Health** will never go above this value. |
 | Current Health           | The health of the player at the start of a scene. |
 | Minimal Damage Unit      | The minimal amount the player may be damaged by when falling. Also used for the damage debug tool that is activated by pressing "H" |
 
@@ -87,13 +90,9 @@ These properties control how the player regenerates health over time. If no rege
 
 The health system features a robust system of visual effects from a distortion shader to head shake upon damage taken, all of which can be configured with a large suite of properties.
 
-!!! info "Damaged Debug Tool"
-
-    TODO fill out this section
-
 #### Camera Shake
 
-When the player takes damage the first-person camera will be quickly rotated off center-view as if recoiling from an attack.
+When the player takes damage the first-person camera will be quickly rotated off center as if recoiling from an attack.
 
 | Export Name     | Description |
 | :--             | :--         |
@@ -102,40 +101,49 @@ When the player takes damage the first-person camera will be quickly rotated off
 
 #### Visual Distortion
 
-The visual distortion effect applies a de-saturation, Perlin noise distortion effect, and vignetting to the first-person camera's view that all scale relative to the player's damage level.
+The visual distortion effect applies de-saturation, Perlin noise distortion, and vignetting to the first-person camera's view that all scale relative to the player's damage level.
+
+Each of the following values progress from the minimum (Min) to the maximum (Max) value as the player progresses from barely damaged to near death.
 
 | Export Name         | Description |
 | :--                 | :--         |
-| Screen Darkness Max/Min  |  |
-| Distortion Speed Max/Min |  |
-| Distortion Size Max/Min  |  |
+| Screen Darkness Min/Max  | The level of screen darkening. |
+| Distortion Speed Min/Max | The speed at which Perlin noise distortion moves past the screen. A higher value results in a more wobbly distortion effect.  |
+| Distortion Size Min/Max  | The size of the Perlin noise distortion. The larger the value the more noticeable the distortion is. |
 
 #### Vignetting
 
-When the player is damage, a vignette will appear that oscillates. The amplitude of its oscillations are relative to the player's health level.
+When the player is damage, a vignette of red will appear that oscillates inward and outward.
 
 | Export Name     | Description |
 | :--             | :-- |
-| Active Zone Multiplier Max/Min | |
-| Multiplier Delta for Animation | |
-| Softness        |  |
-| Speed Max/Min |  |
+| Active Zone Multiplier Min/Max | The normalized radial distance from the center that the vignette gradient oscillates around. Progresses from Min to Max as player becomes more damaged. |
+| Multiplier Delta for Animation | The amplitude of oscillation of the vignetting effect. |
+| Softness        | The width of the gradient from pure red to fully transparent. |
+| Speed Min/Max | The oscillation speed of the vignette. Progresses from Min to Max as the player become more damaged. |
 
 ### Death
 
-When the player meets their demise, the camera will be procedurally animated to drop to the floor and the screen will full de-saturate and fade out.
-
-#### Before Fade Out
+When the player meets their demise, the camera will be procedurally animated to drop to the floor and the screen will begin to blur and fade to black.
 
 #### Speeds
 
+| Export Name         | Description |
+| :--                 | :--         |
+| Camera Drop Speed on Death | The speed with which the first-person camera drops to the floor. |
+| Fade Out Speed      | The speed with which the screen fades to black. |
+
 #### Target Values
 
-#### Other
+| Export Name        | Description |
+| :--                | :--         |
+| Camera Height On Death | The height to which the first-person camera drops to upon death. |
+| Fade Out Target Value | The inverse speed with which the first-person camera fades to black upon death. The lower the value, the longer before it fully fades to black. |
+| Blur Limit Target Value | How blurred vision gets after death and before fade to black. |
+| Blur Target Value | The final blur value before fade to black is complete. |
+| Screen Darkness To Reload Scene | How long the screen remains black for before the scene is reloaded. |
 
 ## Stamina
-
-TODO verify statements and test limitless sprint
 
 This node controls the player's ability to maintain a sprint. The ability to Sprint can be disabled by setting **Max Run Time** to zero. To allow the player to sprint indefinitely, toggle **Limitless Sprint** to true; when true the other 2 parameters in this node will have no effect.
 
@@ -147,7 +155,7 @@ This node controls the player's ability to maintain a sprint. The ability to Spr
 
 ## StairsSystem
 
-Any stair shaped collision object or curb can be procedurally handled by this node, allowing players to ascend and descend whatever whatever heights you deem them capable of stepping over.
+Any stair shaped collision object or curb can be procedurally handled by this node, allowing players to ascend and descend whatever heights you deem them capable of stepping over.
 
 | Export Name      | Description |
 | :--              | :--         |
@@ -160,8 +168,8 @@ Control's how the player falls back to the ground and how high they can jump.
 | Export Name      | Description |
 | :--              | :--         |
 | Weight           | Not weight in the physics sense. Behaves more like a multiplier on both jumps and the force of gravity. |
-| Start Velocity   | Not velocity in the physics sense. Behaves like a multiplier on the player's jump. Higher values results to higher jump heights. |
-| Additional Gravity Power | Acts as a multiplier to makes jumps higher. The lower this value, the higher the player can jump. |
+| Start Velocity   | Not velocity in the physics sense. Behaves like a multiplier on the player's jump. Higher values results in higher jump heights. |
+| Additional Gravity Power | The lower this value, the higher the player can jump. |
 
 ## Bobbing
 
