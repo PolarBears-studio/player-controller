@@ -21,6 +21,8 @@ public partial class HealthSystem : Node3D
 	delegate void FullyRecoveredEventHandler();
 
 	[ExportGroup("Health Metrics")]
+	[Export]
+	public bool PressHToInflictDamage { get; set; } = true;
 	[ExportSubgroup("Amounts")]
 	[Export(PropertyHint.Range, "0,100,0.1,or_greater")]
 	public float MaxHealth     { get; set; }     = 100.0f;
@@ -244,7 +246,7 @@ public partial class HealthSystem : Node3D
 #if DEBUG
 	public override void _UnhandledInput(InputEvent @event)
 	{
-		if (@event is InputEventKey eventKey)
+		if (@event is InputEventKey eventKey && PressHToInflictDamage)
 			
 			if (eventKey.Pressed && eventKey.Keycode == Key.H)
 				TakeDamage(MinimalDamageUnit);
