@@ -44,30 +44,30 @@ public partial class HealthSystem : Node3D
 	// Screen darkness controls how dark the screen will be, where 0.0 - natural
 	// color of the screen(unaltered) and 1.0 - black screen
 	[Export(PropertyHint.Range, "0.0,1.0,0.01")]
-	public float ScreenDarknessMin  { get; set; } = 0.0f;
-	[Export(PropertyHint.Range, "0.0,1.0,0.01")]
 	public float ScreenDarknessMax  { get; set; } = 0.3f;
 	[Export(PropertyHint.Range, "0.0,1.0,0.01")]
-	public float DistortionSpeedMin { get; set; } = 0.0f;
+	public float ScreenDarknessMin  { get; set; } = 0.0f;
 	[Export(PropertyHint.Range, "0.0,1.0,0.01")]
 	public float DistortionSpeedMax { get; set; } = 0.6f;
+	[Export(PropertyHint.Range, "0.0,1.0,0.01")]
+	public float DistortionSpeedMin { get; set; } = 0.0f;
 	[Export(PropertyHint.Range, "0.0,1.0,0.01")]
 	public float DistortionSizeMin  { get; set; } = 0.0f;
 	[Export(PropertyHint.Range, "0.0,1.0,0.01")]
 	public float DistortionSizeMax  { get; set; } = 1.0f;
 	[ExportSubgroup("Vignetting")]
 	[Export(PropertyHint.Range, "0.0,1.0,0.01")]
-	public float ActiveZoneMultiplierMin     { get; set; } = 0.45f;
-	[Export(PropertyHint.Range, "0.0,1.0,0.01")]
 	public float ActiveZoneMultiplierMax     { get; set; } = 0.475f;
+	[Export(PropertyHint.Range, "0.0,1.0,0.01")]
+	public float ActiveZoneMultiplierMin     { get; set; } = 0.45f;
 	[Export(PropertyHint.Range, "0.0,1.0,0.01,or_greater")]
 	public float MultiplierDeltaForAnimation { get; set; } = 0.066f;
 	[Export(PropertyHint.Range, "0.0,1.0,0.01")]
 	public float Softness                    { get; set; } = 1.0f;
 	[Export(PropertyHint.Range, "0.0,10,0.01")]
-	public float SpeedMin { get; set; } = 2.95f;
-	[Export(PropertyHint.Range, "0.0,10,0.01")]
 	public float SpeedMax { get; set; } = 4.0f;
+	[Export(PropertyHint.Range, "0.0,10,0.01")]
+	public float SpeedMin { get; set; } = 2.95f;
 
 	// Death / GameOver
 	[ExportGroup("Death")]
