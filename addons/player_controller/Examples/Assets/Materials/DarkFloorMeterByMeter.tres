@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cjnmdufilepcn"]
+
+[ext_resource type="Texture2D" uid="uid://boasm0g587eov" path="res://addons/player_controller/Examples/Assets/Textures/GridDark.png" id="1_6vou1"]
+
+[resource]
+albedo_texture = ExtResource("1_6vou1")
+uv1_triplanar = true
+uv1_world_triplanar = true

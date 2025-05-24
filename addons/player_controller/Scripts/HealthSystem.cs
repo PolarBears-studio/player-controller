@@ -13,6 +13,13 @@ public partial class HealthSystem : Node3D
 		ReturningBack = 3,
 	}
 	
+	[Signal]
+	delegate void DamagedEventHandler(float amount);
+	[Signal]
+	delegate void DiedEventHandler();
+	[Signal]
+	delegate void FullyRecoveredEventHandler();
+
 	[ExportGroup("Health Metrics")]
 	[ExportSubgroup("Amounts")]
 	[Export(PropertyHint.Range, "0,100,0.1,or_greater")]
@@ -220,9 +227,11 @@ public partial class HealthSystem : Node3D
 
 		CurrentHealth -= amount;
 		CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
+		EmitSignal(SignalName.Damaged, amount);
 		
 		if (CurrentHealth == 0)
 		{
+			EmitSignal(SignalName.Died);
 			_dead = true;
 			return;
 		}
@@ -476,6 +485,7 @@ public partial class HealthSystem : Node3D
 		{
 			CurrentHealth = MaxHealth;
 			_lastHitTime = null;
+			EmitSignal(SignalName.FullyRecovered);
 			return;
 		}
 
