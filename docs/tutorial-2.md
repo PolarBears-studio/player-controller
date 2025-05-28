@@ -1,4 +1,4 @@
-# Tutorial 2.0 - Edit PlayerController's Parameters and Children
+# Edit Parameters and Children
 
 By selecting the Player node in the Scene pane, you can view its 4 movement related parameters in the inspector. 
 

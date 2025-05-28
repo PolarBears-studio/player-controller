@@ -1,4 +1,4 @@
-# Tutorial 1.0 - Add PlayerController to your Game World
+# Getting Started
 
 After installing the addon from the AssetLib, a PlayerController node can be added into your scene using the Scene pane. PlayerController is implemented as a scene hierarchy, which means it must be instantiated in your game world as a child scene. Click the chain link icon at the top of the Scene pane in Godot.
 

@@ -1,4 +1,4 @@
-# Tutorial 3.0 - Extend PlayerController for your own Game
+# Extend PlayerController for your own Game
 
 This tutorial will walk your through extending **PlayerController.tscn** for your own needs in such a way that your newly extended version can easily be dragged and dropped into any number of game worlds without additional effort. 
 
