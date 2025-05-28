@@ -28,7 +28,7 @@ Read the docs [in here](https://polarbears-studio.github.io/player-controller/)
 > In order to ensure smooth development with this addon we strongly recommend to use [Godot .NET 4.4](https://godotengine.org/download/archive/) and higher versions of the engine
 
 > [!IMPORTANT]
-> When you import our addon into a Godot project that previously had no C# scripts, the "Build Project" button may not appear (the hammer button to the left of "Run project"). Should this happen to you, simply navigate to and click on `Project > Tools > C# > Create C# Solution`. The "Build Project" hammer will now appear. Click it to build C# scripts.
+> When you import our addon into a Godot project that previously had no C# scripts, the "Build Project" button may not appear (the hammer button to the left of "Run project") and you might see `Cannot instantiate C# script because...` error in Godot's console. Should this happen to you, simply navigate to and click on `Project > Tools > C# > Create C# Solution`. The "Build Project" hammer will now appear. Click it to build C# scripts. Ideally, this should be done even before importing the addon to your project
 
 <h1 align="center">
   🎮 Screenshots & Video </h1> <p align="center">
