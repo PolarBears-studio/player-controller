@@ -32,9 +32,6 @@ theme:
     - search.suggest
     - toc.follow
     # - toc.integrate
-    - admonition
-    - pymdownx.details
-    - pymdownx.superfences
   palette:
     - media: "(prefers-color-scheme)"
       toggle:

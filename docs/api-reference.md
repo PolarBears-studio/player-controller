@@ -1,4 +1,5 @@
 # API Reference
+
 This page is a comprehensive guide to everything the plugin is capable of. It is organized by each script that makes the **PlayerController.tscn** scene work. We will start with an explanation of the PlayerController.cs script and its exports.
 
 The root PlayerController.cs script provides public access to its child scripts, so that an external script can easily gain access to either PlayerController's members or the members of its children. Any one of the exports mentioned here in this document may be accessed by a script that has a reference to the node by accessing the member of the same name as what shows in the editor inspector, but without spaces. For example, to get or set the Player's walk speed use `Player.WalkSpeed`, or to get or set the Player's current health use `Player.HealthSystem.CurrentHealth`. 
@@ -52,6 +53,12 @@ This script is responsible for managing the height of the collision capsule. It 
 
 This script is responsible for managing the player's health and rendering both the damage and death effects.
 
+When running a debug build of the game, the **H** key can be pressed to damage the player to test out the health system. This can be disabled in the debug build by toggling **Press H To Inflict Damage** off.
+
+| Parameter Name            | Description |
+| :--                       | :--         |
+| Press H To Inflict Damage | If true, the inflict damage debug button will be enabled. It is recommended to disable this if you intend to use "H" key for another purpose. |
+
 This node also supports signals a developer can trigger their own code off of.
 
 | Signal Name     | Description |
@@ -62,15 +69,9 @@ This node also supports signals a developer can trigger their own code off of.
 
 Refer to the [Tutorial 3.1](tutorial-3.md#tutorial-31-utilizing-playercontroller-signal-api) for instructions on utilizing Player signals.
 
-!!! info "Damage Debug Tool"
-    When running a debug build of the game, the **H** key can be pressed to damage the player to test out the health system. This can be disabled in the debug build by toggling **Press H To Inflict Damage** off.
-
-### Health Metrics
+### Metrics
 
 This inspector section contains all properties relating to health values and their regeneration.
-
-| Parameter Name | Description |
-| Press H To Inflict Damage | If true, the inflict damage debug button will be enabled. It is recommended to disable this if you intend to use "H" key for another purpose. |
 
 #### Amounts
 
