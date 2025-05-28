@@ -1,10 +1,49 @@
+<!-- Inline stylesheet to enable number sections. -->
+<style>
+body {
+counter-reset : h2;
+    }
+
+h2 {
+counter-reset : h3;
+    }
+
+h3 {
+counter-reset : h4;
+    }
+
+h4 {
+counter-reset : h5;
+    }
+
+h5 {
+counter-reset : h6;
+    }
+
+article h2:before {
+content : counter(h2,decimal) ". ";
+counter-increment : h2;
+    }
+
+article h3:before {
+content : counter(h2,decimal) "." counter(h3,decimal) ". ";
+counter-increment : h3;
+    }
+
+article h4:before {
+content : counter(h2,decimal) "." counter(h3,decimal) "." counter(h4,decimal) ". ";
+counter-increment : h4;
+    }
+</style>
+
 # API Reference
 
 This page is a comprehensive guide to everything the plugin is capable of. It is organized by each script that makes the **PlayerController.tscn** scene work. We will start with an explanation of the PlayerController.cs script and its exports.
 
 The root PlayerController.cs script provides public access to its child scripts, so that an external script can easily gain access to either PlayerController's members or the members of its children. Any one of the exports mentioned here in this document may be accessed by a script that has a reference to the node by accessing the member of the same name as what shows in the editor inspector, but without spaces. For example, to get or set the Player's walk speed use `Player.WalkSpeed`, or to get or set the Player's current health use `Player.HealthSystem.CurrentHealth`. 
 
-## PlayerController (Player in Scene pane)
+## PlayerController
+*(Player in Scene pane)*
 
 This is the root script of the scene and therefore manages all of its childs' operations. It inherits from a [CharacterBody3D](https://docs.godotengine.org/en/latest/classes/class_characterbody3d.html).
 
@@ -22,7 +61,7 @@ The Player node also implements signals developers can trigger their own scripte
 | Jumped  | This emits from the Player node at the start of a player's jump. |
 | HeadHit | This emits whenever the player's head collides with a surface. |
 
-Refer to the [Tutorial 3.1](tutorial-3.md#tutorial-31-utilizing-playercontroller-signal-api) for instructions on utilizing Player signals.
+Refer to the tutorial on [Utilizing PlayerController Signal API](tutorial-3.md#utilizing-playercontroller-signal-api) for instructions on utilizing Player signals.
 
 ### Input
 
@@ -38,7 +77,7 @@ The Player node is meant to be as simple as drag-and-drop, so by default typical
 | Crouch        | Ctrl | Crouch Input Action |
 | Sprint        | Shift | Sprint Input Action |
 
-Since the look control is handled by a different script, refer to the [Mouse section](api-reference.md##Mouse) later in this document to learn how to switch mouse look to gamepad right analog look and adjust the sensitivity for both.
+Since the look control is handled by a different script, refer to the [Mouse section](api-reference.md#mouse) later in this document to learn how to switch mouse look to gamepad right analog look and adjust the sensitivity for both.
 
 ## CapsuleCollider
 
@@ -67,7 +106,7 @@ This node also supports signals a developer can trigger their own code off of.
 | Died            | Emitted whenever the player is killed. |
 | FullyRecovered  | Emitted whenever the player has fully regenerated their health. |
 
-Refer to the [Tutorial 3.1](tutorial-3.md#tutorial-31-utilizing-playercontroller-signal-api) for instructions on utilizing Player signals.
+Refer to the tutorial on [Utilizing PlayerController Signal API](tutorial-3.md#utilizing-playercontroller-signal-api) for instructions on utilizing Player signals.
 
 ### Metrics
 

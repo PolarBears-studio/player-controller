@@ -12,7 +12,7 @@ The editor will now open into a 3D scene that contains only the Player node as t
 
 In this scene you can modify any parameters of Player or its children as needed or even disable features by detaching scripts from Yellow nodes and/or making them invisible as needed. You can also add on your own features by adding Nodes of your own that may run scripts of your own creation at any place in the Player hierarchy you may need.
 
-## Tutorial 3.1 - Utilizing PlayerController Signal API
+## Utilizing PlayerController Signal API
 
 Lets demonstrate how you can make the **PlayerController.tscn** scene your own by using the Signal API to add a jump sound effect. 
 
