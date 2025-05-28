@@ -1,6 +1,5 @@
-<em>
 <h1 align="center">
-  🎮 Godot's FPS Player Controller [C#]</h1> <p align="center">
+  🎮 Godot's FPS Player Controller [C#]</h1> <p align="center"> </p>
 
 <p align="center"> <img src="/media/player-controller-logo.png" alt="Player Controller Logo" width="550"/> </p> <h1 align="center">
   🎮 Description</h1> <p align="center">
@@ -28,6 +27,9 @@ Read the docs [in here](https://polarbears-studio.github.io/player-controller/)
 > [!NOTE]  
 > In order to ensure smooth development with this addon we strongly recommend to use [Godot .NET 4.4](https://godotengine.org/download/archive/) and higher versions of the engine
 
+> [!IMPORTANT]
+> When you import our addon into a Godot project that previously had no C# scripts, the "Build Project" button may not appear (the hammer button to the left of "Run project"). Should this happen to you, simply navigate to and click on `Project > Tools > C# > Create C# Solution`. The "Build Project" hammer will now appear. Click it to build C# scripts.
+
 <h1 align="center">
   🎮 Screenshots & Video </h1> <p align="center">
 
@@ -45,9 +47,3 @@ Read the docs [in here](https://polarbears-studio.github.io/player-controller/)
 
 * [Asset libary link for the addon](https://godotengine.org/asset-library/asset/4020)
 * Join our [discord server](https://discord.com/channels/1165743149621182605/1368527596907790347) when you have questions about the player controller
-
-<h1 align="center">
-  🎮 Troubleshooting </h1> <p align="center">
-
-If you see `Cannot instantiate C# script because...`
-Godot .NET detects whether you are using C# in your project, and if you are it will reveal the "Build Project" (looks like a hammer) button to the left of "Run Project". However, when you import our addon into a Godot project that previously had no C# scripts, this button may not appear. Should this happen to you, simply navigate to and click on `Project > Tools > C# > Create C# Solution`. The "Build Project" hammer will no appear. Click it to build C# scripts and the message should go away.
