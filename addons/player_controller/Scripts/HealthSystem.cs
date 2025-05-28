@@ -20,9 +20,10 @@ public partial class HealthSystem : Node3D
 	[Signal]
 	delegate void FullyRecoveredEventHandler();
 
-	[ExportGroup("Health Metrics")]
 	[Export]
 	public bool PressHToInflictDamage { get; set; } = true;
+
+	[ExportGroup("Metrics")]
 	[ExportSubgroup("Amounts")]
 	[Export(PropertyHint.Range, "0,100,0.1,or_greater")]
 	public float MaxHealth     { get; set; }     = 100.0f;
