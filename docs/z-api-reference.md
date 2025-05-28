@@ -1,3 +1,6 @@
+
+# API Reference
+ 
 <!-- Inline stylesheet to enable number sections. -->
 <style>
 body {
@@ -35,8 +38,6 @@ content : counter(h2,decimal) "." counter(h3,decimal) "." counter(h4,decimal) ".
 counter-increment : h4;
     }
 </style>
-
-# API Reference
 
 This page is a comprehensive guide to everything the plugin is capable of. It is organized by each script that makes the **PlayerController.tscn** scene work. We will start with an explanation of the PlayerController.cs script and its exports.
 
