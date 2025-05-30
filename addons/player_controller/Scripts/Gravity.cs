@@ -11,6 +11,8 @@ public partial class Gravity: Node3D
 	[Export(PropertyHint.Range, "0.01,10,0.01,or_greater")]
 	public float AdditionalGravityPower { get; set; } = 2f;
 
+	const float JumpFudgeFactor = 6.94e-3f;
+
 	private float _gravity;
 
 	public void Init(float gravitySetting)
@@ -18,6 +20,6 @@ public partial class Gravity: Node3D
 		_gravity = gravitySetting;
 	}
 
-	public float CalculateJumpForce() => Weight * (_gravity * (StartVelocity / AdditionalGravityPower));
+	public float CalculateJumpForce() => JumpFudgeFactor * Weight * (_gravity * (StartVelocity / AdditionalGravityPower));
 	public float CalculateGravityForce() => _gravity * Weight / 30.0f;
 }
