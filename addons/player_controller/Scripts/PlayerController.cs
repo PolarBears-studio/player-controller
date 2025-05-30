@@ -159,7 +159,7 @@ public partial class PlayerController : CharacterBody3D
 		{
 			Velocity = new Vector3(
 				x: Velocity.X,
-				y: Gravity.CalculateJumpForce() * (float)delta,
+				y: Gravity.CalculateJumpForce(),
 				z: Velocity.Z);
 			EmitSignal(SignalName.Jumped);
 		}
