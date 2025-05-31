@@ -5,6 +5,3 @@
 /**                export-ignore
 /addons            !export-ignore
 /addons/**         !export-ignore
-
-# ignore Examples by default as it is non-essential to using the addon
-/addons/Examples/  export-ignore
