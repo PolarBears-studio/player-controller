@@ -91,7 +91,7 @@ size = Vector3(10, 2, 4)
 material = ExtResource("3_srqdk")
 
 [node name="Box2_5Meters" type="CSGBox3D" parent="Map"]
-transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 6, 1.75, -20.5)
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 5, 1.75, -20.5)
 use_collision = true
 size = Vector3(4, 2.5, 4)
 material = ExtResource("3_srqdk")
@@ -150,6 +150,7 @@ environment = SubResource("Environment_l208q")
 
 [node name="Player" parent="." instance=ExtResource("4_mphxi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1, 0)
+CrouchTransitionSpeed = 75.0
 
 [node name="Stairs" parent="." instance=ExtResource("7_1ct0v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.066, 0.5, 19)
