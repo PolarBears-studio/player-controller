@@ -278,11 +278,11 @@ public partial class StairsSystem: Node3D
 		public float Delta;
 	}
 
-	private const float CrouchingLerpingWeight = 15;
-	private const float WalkingLerpingWeight = 30;
-	private const float SprintingLerpingWeight = 75;
+	private const float CrouchingLerpingWeight = 15f;
+	private const float WalkingLerpingWeight = 30f;
+	private const float SprintingLerpingWeight = 75f;
 
-	private const float DefaultLerpingWeight = 100;
+	private const float DefaultLerpingWeight = 100f;
 
 	private float _lerpingWeight = DefaultLerpingWeight;
 
@@ -326,7 +326,7 @@ public partial class StairsSystem: Node3D
 		// Smooth control, to smoothly go to crouching mode on stairs (if capsule height has default height initially)
 		if (parameters.BetweenCrouchingAndNormalHeight)
 		{
-			_lerpingWeight = 150;
+			_lerpingWeight = 150f;
 			positionForModification.Y = 0.05f;
 		}
 
