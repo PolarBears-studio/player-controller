@@ -150,7 +150,6 @@ environment = SubResource("Environment_l208q")
 
 [node name="Player" parent="." instance=ExtResource("4_mphxi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1, 0)
-CrouchTransitionSpeed = 75.0
 
 [node name="Stairs" parent="." instance=ExtResource("7_1ct0v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.066, 0.5, 19)
