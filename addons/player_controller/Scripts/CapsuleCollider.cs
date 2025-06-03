@@ -42,13 +42,13 @@ public partial class CapsuleCollider : CollisionShape3D
 
 	public void Crouch(float delta, float crouchTransitionSpeed)
 	{
-		float new_height = _shape.Height - delta * crouchTransitionSpeed;
-		_shape.Height = Mathf.Clamp(new_height, CapsuleCrouchHeight, CapsuleDefaultHeight);
+		float newHeight = _shape.Height - delta * crouchTransitionSpeed;
+		_shape.Height = Mathf.Clamp(newHeight, CapsuleCrouchHeight, CapsuleDefaultHeight);
 	}
 
 	public void UndoCrouching(float delta, float crouchTransitionSpeed)
 	{
-		float new_height = _shape.Height + delta * crouchTransitionSpeed;
-		_shape.Height = Mathf.Clamp(new_height, CapsuleCrouchHeight, CapsuleDefaultHeight);
+		float newHeight = _shape.Height + delta * crouchTransitionSpeed;
+		_shape.Height = Mathf.Clamp(newHeight, CapsuleCrouchHeight, CapsuleDefaultHeight);
 	}
 }
