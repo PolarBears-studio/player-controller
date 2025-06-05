@@ -31,4 +31,4 @@ Perfect for FPS games, exploration projects, or rapid prototyping.
 
 ### If you see "Cannot instantiate C# script because..."
 
-Godot .NET detects whether you are using C# in your project, and if you are it will reveal the "Build Project" (looks like a hammer) button to the left of "Run Project". However, when you import our addon into a Godot project that previously had no C# scripts, this button may not appear. Should this happen to you, simply navigate to and click on **Project** > **Tools** > **C#** > **Create C# Solution**. The "Build Project" hammer will no appear. Click it to build C# scripts and the message should go away.
+Godot .NET detects whether you are using C# in your project, and if you are it will reveal the "Build Project" (looks like a hammer) button to the left of "Run Project". However, when you import our addon into a Godot project that previously had no C# scripts, this button may not appear. Should this happen to you, simply navigate to and click on **Project** > **Tools** > **C#** > **Create C# Solution**. The "Build Project" hammer will now appear. Click it to build C# scripts and the message should go away.
