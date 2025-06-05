@@ -11,8 +11,10 @@ config_version=5
 [application]
 
 config/name="PlayerControllerAddon"
+config/tags=PackedStringArray("3d", "fps", "gameplay", "polarbearsstudio")
 run/main_scene="uid://db2h3t17k37pe"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
+config/icon="uid://cqy14qrgf2anc"
 
 [display]
 
