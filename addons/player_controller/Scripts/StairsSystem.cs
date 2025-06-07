@@ -331,9 +331,15 @@ public partial class StairsSystem: Node3D
 		}
 
 		// lerp is unbounded, the clamp avoids overshoots
-		positionForModification.Y = Mathf.Clamp(
-			Mathf.Lerp(_cameraSmooth.Position.Y, 0.0f,  _lerpingWeight  * parameters.Delta),
-		-MaxCameraDelayDistance, MaxCameraDelayDistance);
+		if (_cameraSmooth.Position.Y < 0.0f) {
+			positionForModification.Y = Mathf.Clamp(
+				Mathf.Lerp(_cameraSmooth.Position.Y, 0.0f,  _lerpingWeight  * parameters.Delta),
+			-MaxCameraDelayDistance, 0.0f);
+		} else {
+			positionForModification.Y = Mathf.Clamp(
+				Mathf.Lerp(_cameraSmooth.Position.Y, 0.0f,  -_lerpingWeight  * parameters.Delta),
+			0.0f, MaxCameraDelayDistance);
+		}
 
 		_cameraSmooth.Position = positionForModification;
 
