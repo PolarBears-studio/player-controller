@@ -26,8 +26,8 @@ public partial class PlayerController : CharacterBody3D
 	public float SprintSpeed           { get; set; } = 7.2f;
 	[Export(PropertyHint.Range, "0,10,0.1,or_greater")]
 	public float CrouchSpeed           { get; set; } = 2.5f;
-	[Export(PropertyHint.Range, "0,100,0.1,or_greater")]
-	public float CrouchTransitionSpeed { get; set; } = 75.0f;
+	[Export(PropertyHint.Range, "25,100,0.1,or_greater")]
+	public float CrouchTransitionSpeed { get; set; } = 25.0f;
 
 	[ExportGroup("Input")]
 	[Export]
