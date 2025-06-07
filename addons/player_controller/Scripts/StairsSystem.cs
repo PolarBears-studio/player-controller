@@ -330,8 +330,9 @@ public partial class StairsSystem: Node3D
 			positionForModification.Y = 0.05f;
 		}
 
-		positionForModification.Y = Mathf.Lerp(
-			_cameraSmooth.Position.Y, 0.0f,  _lerpingWeight  * parameters.Delta);
+		positionForModification.Y = Mathf.Clamp(
+			Mathf.Lerp(_cameraSmooth.Position.Y, 0.0f,  _lerpingWeight  * parameters.Delta),
+		_cameraSmooth.Position.Y, 0.0f);
 
 		_cameraSmooth.Position = positionForModification;
 
