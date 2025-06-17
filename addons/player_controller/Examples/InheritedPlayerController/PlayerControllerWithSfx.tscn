@@ -4,9 +4,9 @@
 [ext_resource type="AudioStream" uid="uid://b6wrvgtlava56" path="res://addons/player_controller/Examples/Assets/SFX/Jump.wav" id="2_06cs1"]
 [ext_resource type="AudioStream" uid="uid://bb8wonh3q1wpo" path="res://addons/player_controller/Examples/Assets/SFX/HeadHit.wav" id="3_06cs1"]
 [ext_resource type="AudioStream" uid="uid://cpjk8ubqwl1ko" path="res://addons/player_controller/Examples/Assets/SFX/Damaged.wav" id="4_d661p"]
-[ext_resource type="AudioStream" uid="uid://cbmkap6ye6chm" path="res://addons/player_controller/Examples/Assets/SFX/Death.wav" id="5_no2wo"]
+[ext_resource type="AudioStream" uid="uid://cfcclt4jh4oye" path="res://addons/player_controller/Examples/Assets/SFX/Death.wav" id="5_no2wo"]
 [ext_resource type="Script" uid="uid://baepdv65jebio" path="res://addons/player_controller/Examples/InheritedPlayerController/DamagedSfx.cs" id="5_w821p"]
-[ext_resource type="AudioStream" uid="uid://drn63gjgpnowm" path="res://addons/player_controller/Examples/Assets/SFX/HealthRecovered.wav" id="6_w821p"]
+[ext_resource type="AudioStream" uid="uid://d3yxkbvns2w7y" path="res://addons/player_controller/Examples/Assets/SFX/HealthRecovered.wav" id="6_w821p"]
 
 [node name="Player" instance=ExtResource("1_noe0t")]
 
@@ -22,6 +22,7 @@ script = ExtResource("5_w821p")
 
 [node name="DeathSfx" type="AudioStreamPlayer3D" parent="." index="17"]
 stream = ExtResource("5_no2wo")
+panning_strength = 0.0
 
 [node name="HealthRecoveredSfx" type="AudioStreamPlayer3D" parent="." index="18"]
 stream = ExtResource("6_w821p")
