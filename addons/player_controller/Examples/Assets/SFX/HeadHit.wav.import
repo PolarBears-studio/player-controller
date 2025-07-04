@@ -2,7 +2,7 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://bb8wonh3q1wpo"
+uid="uid://dvgwnjo4k70tx"
 path="res://.godot/imported/HeadHit.wav-f4018850eced7a8a31445b1306535912.sample"
 
 [deps]
@@ -17,7 +17,7 @@ force/mono=false
 force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
-edit/normalize=true
+edit/normalize=false
 edit/loop_mode=0
 edit/loop_begin=0
 edit/loop_end=-1
