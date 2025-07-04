@@ -2,7 +2,7 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://b6wrvgtlava56"
+uid="uid://c811lwjjqvuwq"
 path="res://.godot/imported/Jump.wav-cdabc9e85a5946667b7c2454169f79c3.sample"
 
 [deps]
@@ -16,8 +16,8 @@ force/8_bit=false
 force/mono=false
 force/max_rate=false
 force/max_rate_hz=44100
-edit/trim=true
-edit/normalize=true
+edit/trim=false
+edit/normalize=false
 edit/loop_mode=0
 edit/loop_begin=0
 edit/loop_end=-1
