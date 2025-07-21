@@ -290,7 +290,7 @@ public partial class StairsSystem: Node3D
 
 	public void SlideCameraSmoothBackToOrigin(SlideCameraParams parameters)
 {
-    // Only apply global Y lock when we just snapped to stairs
+    // Apply stair snapping only when snapped last frame
     if (_savedCameraGlobalPos != null && _snappedToStairsLastFrame)
     {
         Vector3 savedCameraGlobalPosConverted = (Vector3)_savedCameraGlobalPos;
@@ -301,24 +301,28 @@ public partial class StairsSystem: Node3D
     }
     else
     {
-        // If not snapping to stairs, clear saved position so camera moves freely
         _savedCameraGlobalPos = null;
     }
 
-    // Then smooth local Y offset normally for crouching/bobbing/etc...
     Vector3 positionForModification = _cameraSmooth.Position;
     positionForModification.Y = Mathf.Clamp(
         _cameraSmooth.Position.Y, -MaxCameraDelayDistance, MaxCameraDelayDistance);
-
     _cameraSmooth.Position = positionForModification;
 
-    // Choose lerp speed based on player state
+    // Pick lerping weight normally
     if (parameters.IsCapsuleHeightLessThanNormal)
-        _lerpingWeight = CrouchingLerpingWeight;
+    {
+        // **Reduce smoothing on stairs when crouching to make crouch transitions faster**
+        _lerpingWeight = _snappedToStairsLastFrame ? CrouchingLerpingWeight * 3f : CrouchingLerpingWeight;
+    }
     else if (parameters.CurrentSpeedGreaterThanWalkSpeed)
+    {
         _lerpingWeight = SprintingLerpingWeight;
+    }
     else
+    {
         _lerpingWeight = WalkingLerpingWeight;
+    }
 
     if (parameters.BetweenCrouchingAndNormalHeight)
     {
@@ -326,7 +330,6 @@ public partial class StairsSystem: Node3D
         positionForModification.Y = 0.05f;
     }
 
-    // Smoothly lerp local Y toward zero
     if (_cameraSmooth.Position.Y < 0.0f)
     {
         positionForModification.Y = Mathf.Clamp(
@@ -349,6 +352,7 @@ public partial class StairsSystem: Node3D
             _savedCameraGlobalPos = null;
     }
 }
+
 
 	
 	private bool IsSurfaceTooSteep(Vector3 normal, float floorMaxAngle)
