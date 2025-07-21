@@ -273,6 +273,7 @@ public partial class StairsSystem: Node3D
 	public struct SlideCameraParams
 	{
 		public bool CurrentSpeedGreaterThanWalkSpeed;
+		public bool CrouchingHeight;
 		public bool BetweenCrouchingAndNormalHeight;
 		public float Delta;
 	}
@@ -307,8 +308,12 @@ public partial class StairsSystem: Node3D
 	    positionForModification.Y = Mathf.Clamp(
 	        _cameraSmooth.Position.Y, -MaxCameraDelayDistance, MaxCameraDelayDistance);
 	    _cameraSmooth.Position = positionForModification;
-	    
-	    if (parameters.CurrentSpeedGreaterThanWalkSpeed)
+
+	    if (parameters.CrouchingHeight)
+	    {
+		    _lerpingWeight = CrouchingLerpingWeight;
+	    }
+	    else if (parameters.CurrentSpeedGreaterThanWalkSpeed)
 	    {
 	        _lerpingWeight = SprintingLerpingWeight;
 	    }
