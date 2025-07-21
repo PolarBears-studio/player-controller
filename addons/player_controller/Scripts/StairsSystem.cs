@@ -272,7 +272,6 @@ public partial class StairsSystem: Node3D
 
 	public struct SlideCameraParams
 	{
-		public bool IsCapsuleHeightLessThanNormal;
 		public bool CurrentSpeedGreaterThanWalkSpeed;
 		public bool BetweenCrouchingAndNormalHeight;
 		public float Delta;
@@ -309,13 +308,7 @@ public partial class StairsSystem: Node3D
 	    positionForModification.Y = Mathf.Clamp(
 	        _cameraSmooth.Position.Y, -MaxCameraDelayDistance, MaxCameraDelayDistance);
 	    _cameraSmooth.Position = positionForModification;
-
-	    // Pick lerping weight normally
-	    // if (parameters.IsCapsuleHeightLessThanNormal)
-	    // {
-	    //     // **Reduce smoothing on stairs when crouching to make crouch transitions faster**
-	    //     _lerpingWeight = _snappedToStairsLastFrame ? CrouchingLerpingWeight * 3f : CrouchingLerpingWeight;
-	    // }
+	    
 	    if (parameters.CurrentSpeedGreaterThanWalkSpeed)
 	    {
 	        _lerpingWeight = SprintingLerpingWeight;
@@ -328,7 +321,6 @@ public partial class StairsSystem: Node3D
 	    if (parameters.BetweenCrouchingAndNormalHeight)
 	    {
 	        _lerpingWeight = 500f;
-	        // positionForModification.Y = 0.05f;
 	    }
 
 	    if (_cameraSmooth.Position.Y < 0.0f)

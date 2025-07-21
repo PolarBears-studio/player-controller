@@ -161,10 +161,12 @@ public partial class PlayerController : CharacterBody3D
 				x: Velocity.X,
 				y: Gravity.CalculateJumpForce(),
 				z: Velocity.Z);
+			
 			EmitSignal(SignalName.Jumped);
 		}
 
 		bool isHeadTouchingCeiling = IsHeadTouchingCeiling();
+		
 		bool doesCapsuleHaveDefaultHeight = CapsuleCollider.IsDefaultHeight();
 
 		// The code below is required to quickly adjust player's position on Y-axis when there's a ceiling on the
@@ -332,7 +334,6 @@ public partial class PlayerController : CharacterBody3D
 
 		StairsSystem.SlideCameraParams slideCameraParams = new StairsSystem.SlideCameraParams
 		{
-			IsCapsuleHeightLessThanNormal = CapsuleCollider.IsCapsuleHeightLessThanNormal(),
 			CurrentSpeedGreaterThanWalkSpeed = _currentSpeed > WalkSpeed,
 			BetweenCrouchingAndNormalHeight  = CapsuleCollider.IsBetweenCrouchingAndNormalHeight(),
 			Delta = (float)delta
