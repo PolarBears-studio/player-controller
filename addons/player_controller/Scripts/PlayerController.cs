@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Collections.Generic;
+using Godot;
 
 namespace PolarBears.PlayerControllerAddon;
 
@@ -154,17 +155,19 @@ public partial class PlayerController : CharacterBody3D
 		bool isPlayerDead = HealthSystem.IsDead();
 
 		// Handle Jumping
-		if (IsInputPressed(JumpInputAction, Key.Space) && isOnFloorCustom()
+		if (IsInputPressed(JumpInputAction, Key.Space, justPressed: true) && isOnFloorCustom()
 			&& !doesCapsuleHaveCrouchingHeight && !isPlayerDead)
 		{
 			Velocity = new Vector3(
 				x: Velocity.X,
 				y: Gravity.CalculateJumpForce(),
 				z: Velocity.Z);
+			
 			EmitSignal(SignalName.Jumped);
 		}
 
 		bool isHeadTouchingCeiling = IsHeadTouchingCeiling();
+		
 		bool doesCapsuleHaveDefaultHeight = CapsuleCollider.IsDefaultHeight();
 
 		// The code below is required to quickly adjust player's position on Y-axis when there's a ceiling on the
@@ -186,7 +189,7 @@ public partial class PlayerController : CharacterBody3D
 			
 			// Used both for detecting the moment when we enter into crouching mode and the moment when we're already
 			// in the crouching mode
-			if (IsInputPressed(CrouchInputAction, Key.Ctrl) ||
+			if (IsInputPressed(CrouchInputAction, Key.Ctrl, justPressed: false) ||
 				(doesCapsuleHaveCrouchingHeight && isHeadTouchingCeiling))
 			{
 				CapsuleCollider.Crouch((float)delta, CrouchTransitionSpeed);
@@ -201,7 +204,7 @@ public partial class PlayerController : CharacterBody3D
 		}
 
 		// Each component of the boolean statement for sprinting is required
-		if (IsInputPressed(SprintInputAction, Key.Shift) && !isHeadTouchingCeiling &&
+		if (IsInputPressed(SprintInputAction, Key.Shift, justPressed: false) && !isHeadTouchingCeiling &&
 			!doesCapsuleHaveCrouchingHeight && !isPlayerDead)
 		{
 			_currentSpeed = SprintSpeed;
@@ -332,7 +335,6 @@ public partial class PlayerController : CharacterBody3D
 
 		StairsSystem.SlideCameraParams slideCameraParams = new StairsSystem.SlideCameraParams
 		{
-			IsCapsuleHeightLessThanNormal = CapsuleCollider.IsCapsuleHeightLessThanNormal(),
 			CurrentSpeedGreaterThanWalkSpeed = _currentSpeed > WalkSpeed,
 			BetweenCrouchingAndNormalHeight  = CapsuleCollider.IsBetweenCrouchingAndNormalHeight(),
 			Delta = (float)delta
@@ -358,10 +360,40 @@ public partial class PlayerController : CharacterBody3D
 	{
 		return IsOnFloor() || StairsSystem.WasSnappedToStairsLastFrame();
 	}
+	
+	private Dictionary<Key, bool> previousKeyStates = new();
 
-	private bool IsInputPressed(string inputAction, Key fallbackKey)
+	private bool IsKeyJustPressed(Key key)
+	{
+		bool currentState = Input.IsKeyPressed(key);
+		bool wasPressed = previousKeyStates.GetValueOrDefault(key, false);
+		
+		// note: IsInputPressed (the function that calls IsKeyJustPressed) is called every frame while player is alive
+		// so, the checks below make sense
+		if (currentState)
+		{
+			previousKeyStates[key] = true;
+		}
+		else
+		{
+			previousKeyStates.Remove(key);
+		}
+    
+		return currentState && !wasPressed;
+	}
+
+	private bool IsInputPressed(string inputAction, Key fallbackKey, bool justPressed = false)
 	{
 		bool inputActionSet = !string.IsNullOrEmpty(inputAction);
+    
+		if (justPressed)
+		{
+			return (
+				inputActionSet && Input.IsActionJustPressed(inputAction) ||
+				!inputActionSet && IsKeyJustPressed(fallbackKey)
+			);
+		}
+		
 		return (
 			inputActionSet && Input.IsActionPressed(inputAction) ||
 			!inputActionSet && Input.IsPhysicalKeyPressed(fallbackKey)

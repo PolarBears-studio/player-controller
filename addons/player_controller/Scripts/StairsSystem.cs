@@ -272,83 +272,79 @@ public partial class StairsSystem: Node3D
 
 	public struct SlideCameraParams
 	{
-		public bool IsCapsuleHeightLessThanNormal;
 		public bool CurrentSpeedGreaterThanWalkSpeed;
 		public bool BetweenCrouchingAndNormalHeight;
 		public float Delta;
 	}
 
-	private const float CrouchingLerpingWeight = 15f;
-	private const float WalkingLerpingWeight = 30f;
-	private const float SprintingLerpingWeight = 75f;
+	private const float NormalLerpingWeight = 30f;
+	private const float FastLerpingWeight = 75f;
 
-	private const float DefaultLerpingWeight = 100f;
-
-	private float _lerpingWeight = DefaultLerpingWeight;
+	private float _lerpingWeight = NormalLerpingWeight;
 
 	private const float MaxCameraDelayDistance = 0.25f;
 
 	public void SlideCameraSmoothBackToOrigin(SlideCameraParams parameters)
 	{
-		if (_savedCameraGlobalPos == null)
-		{
-			return;
-		}
+	    if (_savedCameraGlobalPos != null && _snappedToStairsLastFrame)
+	    {
+	        Vector3 savedCameraGlobalPosConverted = (Vector3)_savedCameraGlobalPos;
+	    
+	        Vector3 globalPositionForModification = _cameraSmooth.GlobalPosition;
+	        globalPositionForModification.Y = savedCameraGlobalPosConverted.Y;
+	        _cameraSmooth.GlobalPosition = globalPositionForModification;
+	    }
+	    else
+	    {
+	        _savedCameraGlobalPos = null;
+	    }
 
-		Vector3 savedCameraGlobalPosConverted = (Vector3)_savedCameraGlobalPos;
+	    Vector3 positionForModification = _cameraSmooth.Position;
+	    
+	    positionForModification.Y = Mathf.Clamp(
+	        _cameraSmooth.Position.Y, -MaxCameraDelayDistance, MaxCameraDelayDistance);
+	    _cameraSmooth.Position = positionForModification;
+	    
+	    
+	    if (parameters.CurrentSpeedGreaterThanWalkSpeed)
+	    {
+		    // Leads to more aggressive camera's oscillation when interacting with stairs
+		    _lerpingWeight = FastLerpingWeight;
+	    }
+	    else
+	    {
+	        _lerpingWeight = NormalLerpingWeight;
+	    }
 
-		Vector3 globalPositionForModification = _cameraSmooth.GlobalPosition;
-		globalPositionForModification.Y = savedCameraGlobalPosConverted.Y;
-		_cameraSmooth.GlobalPosition = globalPositionForModification;
+	    if (parameters.BetweenCrouchingAndNormalHeight)
+	    {
+	        _lerpingWeight = 500f;
+	    }
 
-		Vector3 positionForModification = _cameraSmooth.Position;
-		positionForModification.Y = Mathf.Clamp(
-			_cameraSmooth.Position.Y, -MaxCameraDelayDistance, MaxCameraDelayDistance);
-		_cameraSmooth.Position = positionForModification;
+	    if (_cameraSmooth.Position.Y < 0.0f)
+	    {
+	        positionForModification.Y = Mathf.Clamp(
+	            Mathf.Lerp(_cameraSmooth.Position.Y, 0.0f, _lerpingWeight * parameters.Delta),
+	            -MaxCameraDelayDistance, 0.0f);
+	    }
+	    else
+	    {
+	        positionForModification.Y = Mathf.Clamp(
+	            Mathf.Lerp(_cameraSmooth.Position.Y, 0.0f, _lerpingWeight * parameters.Delta),
+	            0.0f, MaxCameraDelayDistance);
+	    }
 
+	    _cameraSmooth.Position = positionForModification;
 
+	    if (Mathf.Abs(_cameraSmooth.Position.Y) < 0.001f)
+	    {
+	        _cameraSmooth.Position = new Vector3(_cameraSmooth.Position.X, 0f, _cameraSmooth.Position.Z);
 
-		if (parameters.IsCapsuleHeightLessThanNormal)
-		{
-			_lerpingWeight = CrouchingLerpingWeight;
-		}else
-		{
-			if (parameters.CurrentSpeedGreaterThanWalkSpeed)
-			{
-				_lerpingWeight = SprintingLerpingWeight;
-			}
-			else
-			{
-				_lerpingWeight = WalkingLerpingWeight;
-			}
-		}
-
-		// Smooth control, to smoothly go to crouching mode on stairs (if capsule height has default height initially)
-		if (parameters.BetweenCrouchingAndNormalHeight)
-		{
-			_lerpingWeight = 150f;
-			positionForModification.Y = 0.05f;
-		}
-
-		// lerp is unbounded, the clamp avoids overshoots
-		if (_cameraSmooth.Position.Y < 0.0f) {
-			positionForModification.Y = Mathf.Clamp(
-				Mathf.Lerp(_cameraSmooth.Position.Y, 0.0f,  _lerpingWeight  * parameters.Delta),
-			-MaxCameraDelayDistance, 0.0f);
-		} else {
-			positionForModification.Y = Mathf.Clamp(
-				Mathf.Lerp(_cameraSmooth.Position.Y, 0.0f,  -_lerpingWeight  * parameters.Delta),
-			0.0f, MaxCameraDelayDistance);
-		}
-
-		_cameraSmooth.Position = positionForModification;
-
-		_savedCameraGlobalPos = _cameraSmooth.GlobalPosition;
-
-		if (_cameraSmooth.Position.Y == 0)
-		{
-			_savedCameraGlobalPos = null;
-		}
+	        if (!_snappedToStairsLastFrame)
+	        {
+		        _savedCameraGlobalPos = null;
+	        }
+	    }
 	}
 	
 	private bool IsSurfaceTooSteep(Vector3 normal, float floorMaxAngle)
