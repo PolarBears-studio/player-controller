@@ -335,7 +335,6 @@ public partial class PlayerController : CharacterBody3D
 
 		StairsSystem.SlideCameraParams slideCameraParams = new StairsSystem.SlideCameraParams
 		{
-			CrouchingHeight = CapsuleCollider.IsCrouchingHeight(),
 			CurrentSpeedGreaterThanWalkSpeed = _currentSpeed > WalkSpeed,
 			BetweenCrouchingAndNormalHeight  = CapsuleCollider.IsBetweenCrouchingAndNormalHeight(),
 			Delta = (float)delta

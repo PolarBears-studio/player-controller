@@ -272,19 +272,15 @@ public partial class StairsSystem: Node3D
 
 	public struct SlideCameraParams
 	{
-		public bool CrouchingHeight;
 		public bool CurrentSpeedGreaterThanWalkSpeed;
 		public bool BetweenCrouchingAndNormalHeight;
 		public float Delta;
 	}
 
-	private const float CrouchingLerpingWeight = 15f;
-	private const float WalkingLerpingWeight = 30f;
-	private const float SprintingLerpingWeight = 75f;
+	private const float NormalLerpingWeight = 30f;
+	private const float FastLerpingWeight = 75f;
 
-	private const float DefaultLerpingWeight = 100f;
-
-	private float _lerpingWeight = DefaultLerpingWeight;
+	private float _lerpingWeight = NormalLerpingWeight;
 
 	private const float MaxCameraDelayDistance = 0.25f;
 
@@ -308,18 +304,16 @@ public partial class StairsSystem: Node3D
 	    positionForModification.Y = Mathf.Clamp(
 	        _cameraSmooth.Position.Y, -MaxCameraDelayDistance, MaxCameraDelayDistance);
 	    _cameraSmooth.Position = positionForModification;
-
-	    if (parameters.CrouchingHeight)
+	    
+	    
+	    if (parameters.CurrentSpeedGreaterThanWalkSpeed)
 	    {
-		    _lerpingWeight = CrouchingLerpingWeight;
-	    }
-	    else if (parameters.CurrentSpeedGreaterThanWalkSpeed)
-	    {
-	        _lerpingWeight = SprintingLerpingWeight;
+		    // Leads to more aggressive camera's oscillation when interacting with stairs
+		    _lerpingWeight = FastLerpingWeight;
 	    }
 	    else
 	    {
-	        _lerpingWeight = WalkingLerpingWeight;
+	        _lerpingWeight = NormalLerpingWeight;
 	    }
 
 	    if (parameters.BetweenCrouchingAndNormalHeight)
