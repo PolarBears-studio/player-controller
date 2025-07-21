@@ -289,11 +289,10 @@ public partial class StairsSystem: Node3D
 
 	public void SlideCameraSmoothBackToOrigin(SlideCameraParams parameters)
 	{
-	    // Apply stair snapping only when snapped last frame
 	    if (_savedCameraGlobalPos != null && _snappedToStairsLastFrame)
 	    {
 	        Vector3 savedCameraGlobalPosConverted = (Vector3)_savedCameraGlobalPos;
-
+	    
 	        Vector3 globalPositionForModification = _cameraSmooth.GlobalPosition;
 	        globalPositionForModification.Y = savedCameraGlobalPosConverted.Y;
 	        _cameraSmooth.GlobalPosition = globalPositionForModification;
@@ -341,8 +340,11 @@ public partial class StairsSystem: Node3D
 	    if (Mathf.Abs(_cameraSmooth.Position.Y) < 0.001f)
 	    {
 	        _cameraSmooth.Position = new Vector3(_cameraSmooth.Position.X, 0f, _cameraSmooth.Position.Z);
+
 	        if (!_snappedToStairsLastFrame)
-	            _savedCameraGlobalPos = null;
+	        {
+		        _savedCameraGlobalPos = null;
+	        }
 	    }
 	}
 	
