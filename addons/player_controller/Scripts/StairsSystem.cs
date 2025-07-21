@@ -272,8 +272,8 @@ public partial class StairsSystem: Node3D
 
 	public struct SlideCameraParams
 	{
-		public bool CurrentSpeedGreaterThanWalkSpeed;
 		public bool CrouchingHeight;
+		public bool CurrentSpeedGreaterThanWalkSpeed;
 		public bool BetweenCrouchingAndNormalHeight;
 		public float Delta;
 	}
